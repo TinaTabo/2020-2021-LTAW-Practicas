@@ -1,0 +1,5 @@
+c) Sincroniza el repositorio y comprueba que los 4 ficheros
+ 
+ se han subido, y que efectivamente todos 
+ 
+ forman parte de un único commit

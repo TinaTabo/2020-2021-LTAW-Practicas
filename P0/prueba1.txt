@@ -1,0 +1,3 @@
+a) Crea los ficheros de texto prueba1.txt, prueba2.txt, prueba3.txt y prueba4.txt 
+desde el VSCode. Mete en cada uno de ellos un texto cualquiera, 
+de la longitud que quieras
