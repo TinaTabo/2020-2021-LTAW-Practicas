@@ -8,7 +8,7 @@
 
 
 * c) Sin conocer el contenido del fichero urjc_ml.dtd, ¿el documento es sintácticamente correcto?
-   * si, es correcto
+   * En el documento DTD están definidas las etiquetas de nuestro lenguaje. Sin saber su contendio no tenemos ni idea de si las etiquetas usadas son válidas o no. Por ello NO PODEMOS DETERMINAR si es correcto o no. (Por ejemplo, la etiqueta podría ser que no estuviese definida, o que la etiqueta para definir un nomobre fuese . No lo sabemos)
 
 
 * d) ¿Qué hace la tercera línea?
