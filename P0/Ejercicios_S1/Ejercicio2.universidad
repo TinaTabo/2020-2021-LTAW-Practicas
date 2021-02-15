@@ -1,0 +1,14 @@
+<!DOCTYPE universidad SYSTEM "universidad.dtd">
+<Escuela>
+    <Nombre>ESTI Telecomunicacion</Nombre>
+    <grado>
+        <Nombre>Ingeniería en Sistemas Audiovisuales y Multimedia</Nombre>
+        <Asignatura>LTAW</Asignatura>
+        <Asignatura>CSAAI</Asignatura>
+        <Asignatura>ASA II</Asignatura>
+    </grado>
+    <grado>
+        <Nombre>Ingeniería en Robótica Software</Nombre>
+        <Asignatura>AC</Asignatura>
+    </grado>
+</Escuela>
