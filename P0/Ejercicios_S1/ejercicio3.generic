@@ -1,0 +1,15 @@
+<!DOCTYPE gerenic SYSTEM "generic.dtd">
+<Contenedor>
+    Texto 5
+    <Contenedor>Texto 3
+        <Contenedor>
+            Texto 2
+            <Contenedor>
+                Texto 1
+            </Contenedor>
+        </Contenedor>
+        <Contenedor>
+            Texto 4
+        </Contenedor>
+    </Contenedor>
+</Contenedor>
