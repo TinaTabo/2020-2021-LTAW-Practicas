@@ -12,7 +12,9 @@ const server = http.createServer((req, res) => {
 
     //-- Aqui se va a programar la lectura de 
     //-- ficheros que el servidor devuelva las 
-    //-- paginas correspondientes.
+    //-- paginas correspondientes a las distintas 
+    //-- peticiones.
+    
 
 })
 
