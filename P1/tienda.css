@@ -1,0 +1,23 @@
+body{
+    background-image: url(img/fondo-web.jpg);
+    background-size: cover;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+  }
+
+footer{
+	text-align: center;
+	font-family: 'Raleway', sans-serif;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	background-color: #c793df;
+
+}
+
+.github{
+	width: 35px;
+	height: auto;
+	margin: 0 auto;
+
+}
+© 2021 GitHub, Inc.
