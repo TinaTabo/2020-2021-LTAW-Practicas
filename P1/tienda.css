@@ -58,14 +58,39 @@ body{
 }
 
 .pianos{
-	position: static;
-	padding: 200px; 
-	margin: 10px; 
-	float: left; 
+	display: inline;
+	float: left;
+	background-color: aliceblue;
+	-webkit-border-radius: 0px 0px 0px 0px;
+	
 }
 
 .guitarras{
-	
+	display: inline;
+	float: left;
+	background-color: aliceblue;
+	-webkit-border-radius: 0px 0px 0px 0px;
+}
+
+.acodeones{
+	display: inline;
+	float: left;
+	background-color: aliceblue;
+	-webkit-border-radius: 0px 0px 0px 0px;
+}
+
+.baterias{
+	display: inline;
+	float: left;
+	background-color: aliceblue;
+	-webkit-border-radius: 0px 0px 0px 0px;
+}
+
+.mesas{
+	display: inline;
+	float: left;
+	background-color: aliceblue;
+	-webkit-border-radius: 0px 0px 0px 0px;
 }
 
 footer{
