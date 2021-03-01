@@ -1,3 +1,8 @@
+@font-face{
+	font-family: "sortelo";
+	src: url("font/SorteloRegular.otf");
+}
+
 body{
     background-image: url(img/fondo-web.jpg);
     background-size: cover;
@@ -22,9 +27,6 @@ body{
 	-webkit-border-radius: 190px 190px 190px 190px;
 }
 
-/*
- * Navegación
- */
  .navegacion {
 	float: right;
 }
@@ -42,9 +44,10 @@ body{
 			
 			.navegacion ul li a {
 				display: block;
-				padding: 0 10px;
+				padding: 0 20px;
 				text-decoration: none;
-				font-family: fantasy;
+				font-family: "sortelo";
+				font-size: 170%;
 			}
 			
 				.navegacion ul li a:hover {
@@ -99,7 +102,8 @@ body{
 
 footer{
 	text-align: center;
-	font-family: fantasy;
+	font-family: "sortelo";
+	font-size: 150%;
 	position: fixed;
 	bottom: 0;
 	width: 100%;
