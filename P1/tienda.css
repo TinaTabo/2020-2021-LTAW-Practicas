@@ -11,7 +11,6 @@ body{
 
 .cabecera{
 	background: rgb(211, 121, 189);
-	color: white;
 	height: 180px;
 	
 	width: 100%;
@@ -48,6 +47,7 @@ body{
 				text-decoration: none;
 				font-family: "sortelo";
 				font-size: 170%;
+				color: rgb(81, 0, 156);
 			}
 			
 				.navegacion ul li a:hover {
@@ -65,7 +65,11 @@ body{
 	float: left;
 	background-color: aliceblue;
 	-webkit-border-radius: 0px 0px 0px 0px;
-	margin: 30px 30px 30px 30px;
+	margin: 30px 30px 30px 55px;
+	text-align: center;
+	font-family: "sortelo";
+	font-size: 170%;
+	color: rgb(81, 0, 156);
 }
 
 .guitarras{
@@ -74,6 +78,10 @@ body{
 	background-color: aliceblue;
 	-webkit-border-radius: 0px 0px 0px 0px;
 	margin: 30px 30px 30px 30px;
+	text-align: center;
+	font-family: "sortelo";
+	font-size: 170%;
+	color: rgb(81, 0, 156);
 }
 
 .acordeones{
@@ -82,6 +90,10 @@ body{
 	background-color: aliceblue;
 	-webkit-border-radius: 0px 0px 0px 0px;
 	margin: 30px 30px 30px 30px;
+	text-align: center;
+	font-family: "sortelo";
+	font-size: 170%;
+	color: rgb(81, 0, 156);
 }
 
 .baterias{
@@ -90,6 +102,10 @@ body{
 	background-color: aliceblue;
 	-webkit-border-radius: 0px 0px 0px 0px;
 	margin: 30px 30px 30px 30px;
+	text-align: center;
+	font-family: "sortelo";
+	font-size: 170%;
+	color: rgb(81, 0, 156);
 }
 
 .mesas{
@@ -98,6 +114,10 @@ body{
 	background-color: aliceblue;
 	-webkit-border-radius: 0px 0px 0px 0px;
 	margin: 30px 30px 30px 30px;
+	text-align: center;
+	font-family: "sortelo";
+	font-size: 170%;
+	color: rgb(81, 0, 156);
 }
 
 footer{
@@ -117,5 +137,4 @@ footer{
 	width: 35px;
 	height: auto;
 	margin: 0 auto;
-
 }
