@@ -28,7 +28,7 @@ body{
 	display: inline;
 	float: left;
 	background-color: aliceblue;
-	-webkit-border-radius: 190px 190px 190px 190px;
+	border-radius: 190px 190px 190px 190px;
 }
 
  .navegacion {
@@ -69,7 +69,7 @@ body{
 	display: inline;
 	float: left;
 	background-color: aliceblue;
-	-webkit-border-radius: 0px 0px 0px 0px;
+	border-radius: 0px 0px 0px 0px;
 	margin: 30px 30px 30px 55px;
 	text-align: center;
 	font-family: "sortelo";
@@ -81,7 +81,7 @@ body{
 	display: inline;
 	float: left;
 	background-color: aliceblue;
-	-webkit-border-radius: 0px 0px 0px 0px;
+	border-radius: 0px 0px 0px 0px;
 	margin: 30px 30px 30px 30px;
 	text-align: center;
 	font-family: "sortelo";
@@ -93,7 +93,7 @@ body{
 	display: inline;
 	float: left;
 	background-color: aliceblue;
-	-webkit-border-radius: 0px 0px 0px 0px;
+	border-radius: 0px 0px 0px 0px;
 	margin: 30px 30px 30px 30px;
 	text-align: center;
 	font-family: "sortelo";
@@ -105,7 +105,7 @@ body{
 	display: inline;
 	float: left;
 	background-color: aliceblue;
-	-webkit-border-radius: 0px 0px 0px 0px;
+	border-radius: 0px 0px 0px 0px;
 	margin: 30px 30px 30px 30px;
 	text-align: center;
 	font-family: "sortelo";
@@ -117,7 +117,7 @@ body{
 	display: inline;
 	float: left;
 	background-color: aliceblue;
-	-webkit-border-radius: 0px 0px 0px 0px;
+	border-radius: 0px 0px 0px 0px;
 	margin: 30px 30px 30px 30px;
 	text-align: center;
 	font-family: "sortelo";

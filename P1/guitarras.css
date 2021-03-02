@@ -29,7 +29,7 @@ body{
 	display: inline;
 	float: left;
 	background-color: aliceblue;
-	-webkit-border-radius: 190px 190px 190px 190px;
+	border-radius: 190px 190px 190px 190px;
 }
 
  .navegacion {
