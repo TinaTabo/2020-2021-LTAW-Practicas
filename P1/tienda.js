@@ -48,7 +48,7 @@ const server = http.createServer((req, res) => {
             mime = "image/" + fich_type;
         }
 
-        //-- Definir css
+        //-- Definir css <-------------------AQUI DEBE HABER UN ERROR
         if (fich_type == "css"){
             mime = "text/css";
         }
