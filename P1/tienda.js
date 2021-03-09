@@ -24,7 +24,7 @@ const server = http.createServer((req, res) => {
 
     //-- Obtenemos el fichero correspondiente.
     if(myURL.pathname == '/'){
-        fich += "tienda.html"; //-- Página principal de la tienda
+        fich += "/tienda.html"; //-- Página principal de la tienda
     }else{
         fich += myURL.pathname; //-- Otro recurso.
     }
