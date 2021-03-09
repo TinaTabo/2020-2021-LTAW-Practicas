@@ -14,6 +14,9 @@ body{
 	margin-bottom: 500px;
 }
 
+#main{
+	width: 1349px;
+}
 .cabecera{
 	background: rgb(211, 121, 189);
 	height: 180px;
@@ -56,7 +59,8 @@ body{
 			}
 			
 				.navegacion ul li a:hover {
-					background: #6fc2e2;
+					border:rgb(150, 13, 150) 5px solid;
+					background: #e7e4e7;
 				}
 
 .cesta{
@@ -64,6 +68,8 @@ body{
 	height: auto;
 	margin: 5px auto;
 }
+
+
 
 .pianos{
 	display: inline;
@@ -76,6 +82,18 @@ body{
 	font-size: 170%;
 	color: rgb(81, 0, 156);
 }
+	.pianos a {
+		display: block;
+		padding: 0 20px;
+		text-decoration: none;
+		font-family: "sortelo";
+		font-size: 100%;
+		color: rgb(81, 0, 156);
+	}
+		.pianos:hover {
+			border:rgb(150, 13, 150) 5px solid;
+			background: #e7e4e7;
+		}
 
 .guitarras{
 	display: inline;
@@ -88,6 +106,18 @@ body{
 	font-size: 170%;
 	color: rgb(81, 0, 156);
 }
+	.guitarras a {
+		display: block;
+		padding: 0 20px;
+		text-decoration: none;
+		font-family: "sortelo";
+		font-size: 100%;
+		color: rgb(81, 0, 156);
+	}
+		.guitarras:hover {
+			border:rgb(150, 13, 150) 5px solid;
+			background: #e7e4e7;
+		}
 
 .acordeones{
 	display: inline;
@@ -100,6 +130,18 @@ body{
 	font-size: 170%;
 	color: rgb(81, 0, 156);
 }
+	.acordeones a {
+		display: block;
+		padding: 0 20px;
+		text-decoration: none;
+		font-family: "sortelo";
+		font-size: 100%;
+		color: rgb(81, 0, 156);
+	}
+		.acordeones:hover {
+			border:rgb(150, 13, 150) 5px solid;
+			background: #e7e4e7;
+		}
 
 .baterias{
 	display: inline;
@@ -112,6 +154,18 @@ body{
 	font-size: 170%;
 	color: rgb(81, 0, 156);
 }
+	.baterias a {
+		display: block;
+		padding: 0 20px;
+		text-decoration: none;
+		font-family: "sortelo";
+		font-size: 100%;
+		color: rgb(81, 0, 156);
+	}
+		.baterias:hover {
+			border:rgb(150, 13, 150) 5px solid;
+			background: #e7e4e7;
+		}
 
 .mesas{
 	display: inline;
@@ -124,6 +178,18 @@ body{
 	font-size: 170%;
 	color: rgb(81, 0, 156);
 }
+	.mesas a {
+		display: block;
+		padding: 0 20px;
+		text-decoration: none;
+		font-family: "sortelo";
+		font-size: 100%;
+		color: rgb(81, 0, 156);
+	}
+		.mesas:hover {
+			border:rgb(150, 13, 150) 5px solid;
+			background: #e7e4e7;
+		}
 
 footer{
 	text-align: center;

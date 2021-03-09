@@ -57,7 +57,8 @@ body{
 			}
 			
 				.navegacion ul li a:hover {
-					background: #6fc2e2;
+					border:rgb(150, 13, 150) 5px solid;
+					background: #e7e4e7;
 				}
 
 .cesta{
