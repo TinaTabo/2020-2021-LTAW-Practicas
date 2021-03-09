@@ -35,7 +35,39 @@ const server = http.createServer((req, res) => {
     //-- Comprobamos los parámetros obtenidos por el terminal
     console.log("Nombre del Fichero: " + fich);
     console.log("Tipo de Fichero: " + fich_type);
-})
+
+    //--Lectura asíncrona (mejor para servidor web) del fichero.
+    //-- y obtención de la respuesta del servidor.
+    fs.readFile(fich, function(err, data){
+
+        //-- Definir tipo de archivo html.
+        let mime = "text/html"
+
+        //-- Definir tipo de imágenes
+        if(fich_type == 'jpg' || fich_type == 'png'){
+            mime = "image/" + fich_type;
+        }
+
+        //-- Definir css
+        if (fich_type == 'css'){
+            mime = "text/css";
+        }
+
+        //-- Fichero no encontrado --> Devolver página html de error.
+        if (err){
+            //-- Generar respuesta de error.
+            res.writeHead(404,{'Content-Type': mime})
+            res.write(data);
+            res.end();
+        }else{
+            //-- No hay error --> 200 OK
+            //-- Generar respuesta.
+            res.writeHead(200, {'Content-Type': mime});
+            res.write(data);
+            res.end();
+        }
+    });
+});
 
 //-- Activar el servidor
 server.listen(PUERTO);
