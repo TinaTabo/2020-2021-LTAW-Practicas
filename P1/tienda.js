@@ -49,7 +49,7 @@ const server = http.createServer((req, res) => {
         }
 
         //-- Definir css
-        if (fich_type == 'css'){
+        if (fich_type == "css"){
             mime = "text/css";
         }
 
