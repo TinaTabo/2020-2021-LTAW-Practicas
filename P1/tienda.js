@@ -14,7 +14,7 @@ const server = http.createServer((req, res) => {
     console.log(" ");
     
     //-- Obtener y parsear la url de la petición
-    let myURL = url.parse(req.url, true);
+    var myURL = url.parse(req.url, true);
     console.log("Recurso solicitado (URL): " + req.url);
     console.log("Recurso: " + myURL.pathname);
 
@@ -22,7 +22,7 @@ const server = http.createServer((req, res) => {
     //-- con el que se responderá la petición
 
     //-- inicializamos el fichero vacío
-    let fich = "";
+    var fich = "";
 
     //-- Obtenemos el fichero correspondiente.
     if(myURL.pathname == '/'){
@@ -43,7 +43,7 @@ const server = http.createServer((req, res) => {
     fs.readFile(fich, function(err, data){
 
         //-- Definir tipo de archivo html.
-        let mime = "text/html"
+        var mime = "text/html"
 
         //-- Definir tipo de imágenes
         if(fich_type == 'jpg' || fich_type == 'png'){
