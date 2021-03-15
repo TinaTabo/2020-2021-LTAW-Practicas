@@ -28,9 +28,10 @@ body{
 }
 
 .error h1{
+	padding-top: 40px;
     text-align: center;
 	font-family: "sortelo";
-	font-size: 200%;
+	font-size: 170%;
 	color: rgb(81, 0, 156);
 }
 
