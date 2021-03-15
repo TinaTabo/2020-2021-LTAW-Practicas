@@ -76,6 +76,18 @@ body{
 	font-size: 170%;
 	color: rgb(81, 0, 156);
 }
+	.producto1 a {
+		display: block;
+		padding: 0 20px;
+		text-decoration: none;
+		font-family: "sortelo";
+		font-size: 100%;
+		color: rgb(81, 0, 156);
+	}
+		.producto1:hover{
+			border:rgb(150, 13, 150) 5px solid;
+			background: #e7e4e7;
+		}
 
 .producto2{
     display: inline;
@@ -87,6 +99,18 @@ body{
 	font-size: 170%;
 	color: rgb(81, 0, 156);
 }
+	.producto2 a {
+		display: block;
+		padding: 0 20px;
+		text-decoration: none;
+		font-family: "sortelo";
+		font-size: 100%;
+		color: rgb(81, 0, 156);
+	}
+		.producto2:hover{
+			border:rgb(150, 13, 150) 5px solid;
+			background: #e7e4e7;
+		}
 
 .producto3{
     display: inline;
@@ -98,6 +122,18 @@ body{
 	font-size: 170%;
 	color: rgb(81, 0, 156);
 }
+	.producto3 a {
+		display: block;
+		padding: 0 20px;
+		text-decoration: none;
+		font-family: "sortelo";
+		font-size: 100%;
+		color: rgb(81, 0, 156);
+	}
+		.producto3:hover{
+			border:rgb(150, 13, 150) 5px solid;
+			background: #e7e4e7;
+		}
 
 .producto4{
     display: inline;
@@ -109,6 +145,18 @@ body{
 	font-size: 170%;
 	color: rgb(81, 0, 156);
 }
+	.producto4 a {
+		display: block;
+		padding: 0 20px;
+		text-decoration: none;
+		font-family: "sortelo";
+		font-size: 100%;
+		color: rgb(81, 0, 156);
+	}
+		.producto4:hover{
+			border:rgb(150, 13, 150) 5px solid;
+			background: #e7e4e7;
+		}
 
 .producto5{
     display: inline;
@@ -120,6 +168,18 @@ body{
 	font-size: 170%;
 	color: rgb(81, 0, 156);
 }
+	.producto5 a {
+		display: block;
+		padding: 0 20px;
+		text-decoration: none;
+		font-family: "sortelo";
+		font-size: 100%;
+		color: rgb(81, 0, 156);
+	}
+		.producto5:hover{
+			border:rgb(150, 13, 150) 5px solid;
+			background: #e7e4e7;
+		}
 
 .producto6{
     display: inline;
@@ -131,6 +191,18 @@ body{
 	font-size: 170%;
 	color: rgb(81, 0, 156);
 }
+	.producto6 a {
+		display: block;
+		padding: 0 20px;
+		text-decoration: none;
+		font-family: "sortelo";
+		font-size: 100%;
+		color: rgb(81, 0, 156);
+	}
+		.producto6:hover{
+			border:rgb(150, 13, 150) 5px solid;
+			background: #e7e4e7;
+		}
 
 footer{
 	text-align: center;

@@ -24,13 +24,32 @@ body{
 .inst img{
     float: left;
     margin-left: 50px;
-    margin-right: 15px;
+    margin-right: 50px;
     border:rgb(150, 13, 150) 5px solid;
 }
 
 .inst button {
     background: #ebb4f0;
     border-radius: 28px;
+    border-color: rgb(150, 13, 150);
     font-family: "sortelo";
     font-size: 150%;
+    color: rgb(150, 13, 150);
+}
+.inst button:hover {
+    background: #a5d8f8;
+    border-radius: 28px;
+    border-color: rgb(52, 138, 172);
+    font-family: "sortelo";
+    font-size: 150%;
+    color: rgb(43, 13, 150);
+}
+
+.inst ul li{
+    margin: 5px;
+    margin-right: 150px;
+    list-style-position: outside;
+    font-family: "sortelo";
+    font-size: 140%;
+    color: rgb(43, 13, 150);
 }
