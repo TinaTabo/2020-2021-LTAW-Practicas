@@ -9,7 +9,9 @@ const PUERTO = 9000
 //-- Crear el servidor. Por cada petición recibida
 //-- se imprime un mensaje de control en el terminal
 const server = http.createServer((req, res) => {
+    console.log(" ");
     console.log("----Petición recibida----");
+    console.log(" ");
     
     //-- Obtener y parsear la url de la petición
     let myURL = url.parse(req.url, true);
