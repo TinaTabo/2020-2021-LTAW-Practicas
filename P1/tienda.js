@@ -30,6 +30,7 @@ const server = http.createServer((req, res) => {
     }else{
         fich += myURL.pathname; //-- Otro recurso.
     }
+    console.log("Fichero a devolver: " + fich);
 
     //-- Obtenemos el tipo de fichero para saber qué devolver al cliente.
     fich_type = fich.split(".")[1]; //-- Extension del archivo.
@@ -56,18 +57,18 @@ const server = http.createServer((req, res) => {
         }
 
         //-- Fichero no encontrado --> Devolver página html de error.
-        if (err){
+        if ((err) || fich == "./error.html"){
             //-- Generar respuesta de error.
             res.writeHead(404,{'Content-Type': mime})
-            res.write(data);
-            res.end();
+            console.log("Respuesta: 404 Not Found")
         }else{
             //-- No hay error --> 200 OK
             //-- Generar respuesta.
             res.writeHead(200, {'Content-Type': mime});
-            res.write(data);
-            res.end();
+            console.log("Respuesta: 200 OK")
         }
+        res.write(data);
+        res.end();
     });
 });
 
