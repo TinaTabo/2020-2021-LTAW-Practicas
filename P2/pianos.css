@@ -1,0 +1,133 @@
+@font-face{
+	font-family: "sortelo";
+	src: url("font/SorteloRegular.otf");
+}
+
+html {
+	min-height: 100%;
+	position: relative;
+}
+
+body{
+    background-image: url(img/fondo-web.jpg);
+    background-size: cover;
+    margin: 0;
+    margin-bottom: 700px;
+}
+
+.cabecera{
+	background: rgb(211, 121, 189);
+	height: 180px;
+	
+	width: 100%;
+	left: 0;
+	top: 0;
+	position: static;
+}
+
+.logo{
+	display: inline;
+	float: left;
+	background-color: aliceblue;
+	border-radius: 190px 190px 190px 190px;
+}
+
+ .navegacion {
+	float: right;
+}
+	.navegacion ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		padding-right: 20px;
+	}
+	
+		.navegacion ul li {
+			display: inline-block;
+			line-height: 80px;
+		}
+			
+			.navegacion ul li a {
+				display: block;
+				padding: 0 20px;
+				text-decoration: none;
+				font-family: "sortelo";
+				font-size: 170%;
+				color: rgb(81, 0, 156);
+			}
+			
+				.navegacion ul li a:hover {
+					border:rgb(150, 13, 150) 5px solid;
+					background: #e7e4e7;
+				}
+
+.cesta{
+	width: 40px;
+	height: auto;
+	margin: 5px auto;
+}
+
+.producto1{
+    display: inline;
+	float: left;
+	background-color: aliceblue;
+	margin: 30px 30px 30px 250px;
+	text-align: center;
+	font-family: "sortelo";
+	font-size: 170%;
+	color: rgb(81, 0, 156);
+}
+	.producto1 a {
+		display: block;
+		padding: 0 20px;
+		text-decoration: none;
+		font-family: "sortelo";
+		font-size: 100%;
+		color: rgb(81, 0, 156);
+	}
+		.producto1:hover{
+			border:rgb(150, 13, 150) 5px solid;
+			background: #e7e4e7;
+		}
+
+.producto2{
+    display: inline;
+	float: left;
+	background-color: aliceblue;
+	margin: 30px 30px 30px 200px;
+	text-align: center;
+	font-family: "sortelo";
+	font-size: 170%;
+	color: rgb(81, 0, 156);
+}
+	.producto2 a {
+		display: block;
+		padding: 0 20px;
+		text-decoration: none;
+		font-family: "sortelo";
+		font-size: 100%;
+		color: rgb(81, 0, 156);
+	}
+		.producto2:hover{
+			border:rgb(150, 13, 150) 5px solid;
+			background: #e7e4e7;
+		}
+
+footer{
+	text-align: center;
+	font-family: "sortelo";
+	font-size: 150%;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 40px;
+	padding-top: 10px;
+	padding-bottom: 80px;
+	background-color:  rgb(211, 121, 189);
+}
+
+.github{
+	width: 35px;
+	height: auto;
+	margin: 0 auto;
+}
