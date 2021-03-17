@@ -43,15 +43,15 @@ const server = http.createServer((req, res) => {
     //-- y obtención de la respuesta del servidor.
     fs.readFile(fich, function(err, data){
 
-        //-- Definir tipo de archivo html.
+        //-- Definir mime para el tipo de archivo html.
         var mime = "text/html"
 
-        //-- Definir tipo de imágenes
+        //-- Definir mime para el tipo de imágenes
         if(fich_type == 'jpg' || fich_type == 'png'){
             mime = "image/" + fich_type;
         }
 
-        //-- Definir css
+        //-- Definir mime para el css
         if (fich_type == "css"){
             mime = "text/css";
         }
