@@ -3,7 +3,7 @@
 
 const fs = require('fs');
 
-//-- Npmbre del fichero JSON a leer
+//-- Nombre del fichero JSON a leer
 const FICHERO_JSON = "tienda.json"
 
 //-- Leer el fichero JSON (lectura sincrona)
