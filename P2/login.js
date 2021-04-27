@@ -23,11 +23,13 @@ const  tienda_json = fs.readFileSync(FICHERO_JSON);
 //-- Crear la estructura tienda a partir del contenido del fichero
 const tienda = JSON.parse(tienda_json);
 
-//-- Imprimir lista de usuarios registrados.
+//-- Crear una lista de usuarios registrados.
+let users_reg = [];
 console.log("Lista de usuarios registrados");
 console.log("-----------------------------");
 tienda[1]["usuarios"].forEach((element, index)=>{
     console.log("Usuario " + (index + 1) + ": " + element.user);
+    users_reg.push(element.user);
   });
 console.log();
 
@@ -45,6 +47,44 @@ const server = http.createServer((req, res) => {
     //-- Obtener el nombre de usuario
     let user = myURL.searchParams.get('nombre');
     console.log('Nombre: ' + user);
+
+    //-- Por defecto -> pagina de inicio
+    let content_type = "text/html";
+    let content = INICIO;
+
+    //-- Acceso al formulario login
+    if (myURL.pathname == '/login') {
+        content_type = "text/html";
+        content = FORMULARIO;
+    }
+
+    //-- Procesar la respuesta del formulario
+    
+
+
+
+
+
+
+
+
+
+    //-- Si hay datos en el cuerpo, se imprimen
+  req.on('data', (cuerpo) => {
+
+    //-- Los datos del cuerpo son caracteres
+    req.setEncoding('utf8');
+    console.log(`Cuerpo (${cuerpo.length} bytes)`)
+    console.log(` ${cuerpo}`);
+  });
+
+  //-- Esto solo se ejecuta cuando llega el final del mensaje de solicitud
+  req.on('end', ()=> {
+    //-- Generar respuesta
+    res.setHeader('Content-Type', content_type);
+    res.write(content);
+    res.end()
+  });
 
 
 });
