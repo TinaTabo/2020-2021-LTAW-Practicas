@@ -59,15 +59,18 @@ const server = http.createServer((req, res) => {
     }
 
     //-- Procesar la respuesta del formulario
-    
-
-
-
-
-
-
-
-
+    if (myURL.pathname == '/procesar') {
+        content_type = "text/html";
+        //-- Dar bienvenida solo a usuarios registrados.
+        if (users_reg.includes(user)){
+            console.log('El usuario esta registrado');
+            content = LOGIN_OK;
+            html_extra = user;
+            content = content.replace("HTML_EXTRA", html_extra);
+        }else{
+            content = LOGIN_KO;
+        }
+    }
 
     //-- Si hay datos en el cuerpo, se imprimen
   req.on('data', (cuerpo) => {
