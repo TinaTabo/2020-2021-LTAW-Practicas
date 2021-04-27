@@ -1,0 +1,52 @@
+[
+    {
+        "productos": [
+            {
+                "nombre": "guitarra",
+                "descripcion": "producto 1",
+                "stock": 20
+            },
+            {
+                "nombre": "piano",
+                "descripcion": "producto 2",
+                "stock": 3
+            },
+            {
+                "nombre": "acordeon",
+                "descripcion": "producto 3",
+                "stock": 7
+            }
+        ]
+    },
+    {
+        "usuarios":[
+            {
+                "user": "tinatabo",
+                "nombre": "Cristina",
+                "email": "tinatabo@theultimatemusicshop.com"
+            },
+            {
+                "user": "root",
+                "nombre": "rooty",
+                "email": "rooty@root.net"
+            }
+        ]
+    },
+    {
+        "pedidos":[
+            {
+                "user": "tinatabo",
+                "dirección": "Calle de la música, 7",
+                "tarjeta": 1234,
+                "productos":[
+                    {
+                        "producto": "guitarra"
+                    },
+                    {
+                        "producto": "piano"
+                    }
+                ]
+            }
+        ]
+    }
+]
