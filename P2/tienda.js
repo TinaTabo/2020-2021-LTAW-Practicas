@@ -4,6 +4,21 @@ const http = require('http');
 const fs = require('fs');
 const PUERTO = 9000;
 
+//-- Definir los tipos de mime
+const mime_type = {
+  "html" : "text/html",
+  "css"  : "text/css",
+  "js"   : "application/javascript",
+  "jpg"  : "image/jpg",
+  "JPG"  : "image/jpg",
+  "jpeg" : "image/jpeg",
+  "png"  : "image/png",
+  "gif"  : "image/gif",
+  "ico"  : "image/x-icon",
+  "json" : "application/json",
+  "TTF"  : "font/ttf"
+};
+
 //-- Cargar la pagina principal de la web
 const INICIO = fs.readFileSync('inicio.html', 'utf-8');
 
@@ -104,7 +119,7 @@ const server = http.createServer((req, res) => {
     let user = get_user(req);
 
     //-- Por defecto -> pagina de inicio
-    let content_type = "text/html";
+    let content_type = mime_type["html"]; 
     let content = INICIO;
     if (myURL.pathname == '/'){
       //-- Si la variable user está asignada
@@ -122,7 +137,7 @@ const server = http.createServer((req, res) => {
 
     //-- Acceso a las pagina de los productos
     if (myURL.pathname == '/producto1'){
-      content_type = "text/html";
+      content_type = mime_type["html"]; 
       content = PRODUCTO1;
       content = content.replace('NOMBRE', productos_disp[0][0]);
       content = content.replace('DESCRIPCION', productos_disp[0][1]);
@@ -131,7 +146,7 @@ const server = http.createServer((req, res) => {
     }
 
     if (myURL.pathname == '/producto2'){
-      content_type = "text/html";
+      content_type = mime_type["html"]; 
       content = PRODUCTO2;
       content = content.replace('NOMBRE', productos_disp[1][0]);
       content = content.replace('DESCRIPCION', productos_disp[1][1]);
@@ -140,7 +155,7 @@ const server = http.createServer((req, res) => {
     }
 
     if (myURL.pathname == '/producto3'){
-      content_type = "text/html";
+      content_type = mime_type["html"]; 
       content = PRODUCTO3;
       content = content.replace('NOMBRE', productos_disp[2][0]);
       content = content.replace('DESCRIPCION', productos_disp[2][1]);
@@ -149,7 +164,7 @@ const server = http.createServer((req, res) => {
     }
 
     if (myURL.pathname == '/producto4'){
-      content_type = "text/html";
+      content_type = mime_type["html"]; 
       content = PRODUCTO4;
       content = content.replace('NOMBRE', productos_disp[3][0]);
       content = content.replace('DESCRIPCION', productos_disp[3][1]);
@@ -159,7 +174,7 @@ const server = http.createServer((req, res) => {
 
     //-- Acceso al formulario login
     if (myURL.pathname == '/login') {
-        content_type = "text/html";
+        content_type = mime_type["html"]; 
         content = FORMULARIO_LOGIN;
     }
 
@@ -169,7 +184,7 @@ const server = http.createServer((req, res) => {
         let user = myURL.searchParams.get('nombre');
         console.log('Nombre: ' + user);
         //-- Dar bienvenida solo a usuarios registrados.
-        content_type = "text/html";
+        content_type = mime_type["html"]; 
         if (users_reg.includes(user)){
             console.log('El usuario esta registrado');
             //-- Asignar la cookie al usuario registrado.
@@ -185,7 +200,7 @@ const server = http.createServer((req, res) => {
 
     //-- Acceso al formulario pedido
     if (myURL.pathname == '/pedido') {
-      content_type = "text/html";
+      content_type = mime_type["html"]; 
       content = FORMULARIO_PEDIDO;
     }
 
@@ -213,7 +228,7 @@ const server = http.createServer((req, res) => {
         fs.writeFileSync(FICHERO_JSON_PRUEBA, myTienda);
       }
       //-- Confirmar pedido
-      content_type = "text/html";
+      content_type = mime_type["html"]; 
       console.log('Pedido procesado correctamente');
       content = PEDIDO_OK;
      }
