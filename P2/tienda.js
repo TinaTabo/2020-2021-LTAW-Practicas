@@ -318,7 +318,8 @@ const server = http.createServer((req, res) => {
     if (myURL.pathname == '/carrito'){
       content_type = mime_type['html'];
       content = CARRITO;
-      get_carrito(req);
+      let carrito = get_carrito(req);
+      content = content.replace("PRODUCTOS", carrito);
     }
 
     //-- Acceso al formulario login
