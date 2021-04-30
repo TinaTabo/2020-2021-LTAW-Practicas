@@ -109,10 +109,12 @@ const server = http.createServer((req, res) => {
       //-- no mostrar el acceso a login.
       if (user) {
         //-- Anadir a la página el nombre del usuario
-        content = INICIO.replace("HTML_EXTRA", "<h2>Usuario: " + user + "</h2>");
+        content = INICIO.replace("HTML_EXTRA", "<h2>Usuario: " + user + "</h2>" +
+                  `<form action="/pedido" method="get"><input type="submit" value="Carrito"/></form>`);
       }else{
         //-- Mostrar el enlace al formulario Login
-        content = INICIO.replace("HTML_EXTRA", `<input type="submit" value="Login"/>`);
+        content = INICIO.replace("HTML_EXTRA", 
+                  `<form action="/login" method="get"><input type="submit" value="Login"/></form>`);
       }
     }
 
@@ -160,17 +162,10 @@ const server = http.createServer((req, res) => {
       //-- si este no es nulo (null)
       if ((direccion != null) && (tarjeta != null)) {
         let pedido = {
-          "user": "root",
+          "user": user,
           "dirección": direccion,
           "tarjeta": tarjeta,
-          "productos": [
-            {
-              "producto": "guitarra"
-            },
-            {
-              "producto": "piano"
-            }
-          ]
+          "productos": productos_disp
         }
         tienda[2]["pedidos"].push(pedido);
         //-- Convertir a JSON y registrarlo
