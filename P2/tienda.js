@@ -108,7 +108,7 @@ function get_user(req) {
 }
 
 //-- Funcion para crear las cookies al añadir articulos al carrito.
-function añadir_al_carrito(req, res, producto) {
+function add_al_carrito(req, res, producto) {
   const cookie = req.headers.cookie;
 
   if (cookie) {
@@ -270,36 +270,44 @@ const server = http.createServer((req, res) => {
     }
 
     //-- Procesar los articulos que van al carrito
-    if (myURL.pathname == '/añadir_guitarra'){
+    if (myURL.pathname == '/add_guitarra'){
+      content_type = mime_type["html"];
+      content = CARRITO;
       if (carrito_existe) {
-        añadir_al_carrito(req, res, 'guitarra');
+        add_al_carrito(req, res, 'guitarra');
       }else{
         res.setHeader('Set-Cookie', 'carrito=guitarra');
         carrito_existe = true;
       }
     }
 
-    if (myURL.pathname == '/añadir_piano'){
+    if (myURL.pathname == '/add_piano'){
+      content_type = mime_type["html"];
+      content = CARRITO;
       if (carrito_existe) {
-        añadir_al_carrito(req, res, 'piano');
+        add_al_carrito(req, res, 'piano');
       }else{
         res.setHeader('Set-Cookie', 'carrito=piano');
         carrito_existe = true;
       }
     }
 
-    if (myURL.pathname == '/añadir_acordeon'){
+    if (myURL.pathname == '/add_acordeon'){
+      content_type = mime_type["html"];
+      content = CARRITO;
       if (carrito_existe) {
-        añadir_al_carrito(req, res, 'acordeon');
+        add_al_carrito(req, res, 'acordeon');
       }else{
         res.setHeader('Set-Cookie', 'carrito=acordeon');
         carrito_existe = true;
       }
     }
 
-    if (myURL.pathname == '/añadir_bateria'){
+    if (myURL.pathname == '/add_bateria'){
+      content_type = mime_type["html"];
+      content = CARRITO;
       if (carrito_existe) {
-        añadir_al_carrito(req, res, 'bateria');
+        add_al_carrito(req, res, 'bateria');
       }else{
         res.setHeader('Set-Cookie', 'carrito=bateria');
         carrito_existe = true;
