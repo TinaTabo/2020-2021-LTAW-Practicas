@@ -198,12 +198,6 @@ const server = http.createServer((req, res) => {
         }
     }
 
-    //-- Acceso al carrito
-    if (myURL.pathname == '/carrito') {
-      content_type = mime_type["html"]; 
-      content = CARRITO;
-    }
-
     //-- Acceso al formulario pedido
     if (myURL.pathname == '/pedido') {
       content_type = mime_type["html"]; 
