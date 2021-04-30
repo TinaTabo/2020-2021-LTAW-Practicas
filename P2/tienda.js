@@ -362,6 +362,24 @@ const server = http.createServer((req, res) => {
       let tarjeta = myURL.searchParams.get('tarjeta');
       console.log("Dirección de envío: " + direccion + "\n" +
                   "Número de la tarjeta: " + tarjeta + "\n");
+      //-- Obtener la lista de productos y la cantidad
+      let carrito = get_carrito(req);
+      producto_unidades = carrito.split('<br>');
+      console.log(producto_unidades);
+
+      //-- Arrays para guardar los productos adquiridos
+      let list_productos = [];
+      let list_unidades = [];
+      //-- Obtener numero de productos adquiridos y actualizar stock
+      producto_unidades.forEach((element, index) => {
+        let [producto, unidades] = element.split(' x ');
+        list_productos.push(producto);
+        list_unidades.push(unidades);
+      });
+      
+      //-- Actualizar en la base de datos el stock de los productos.
+      
+
       //-- Guardar datos del pedido en el registro tienda.json
       //-- si este no es nulo (null)
       if ((direccion != null) && (tarjeta != null)) {
@@ -369,8 +387,7 @@ const server = http.createServer((req, res) => {
           "user": user,
           "dirección": direccion,
           "tarjeta": tarjeta,
-          "productos": "guitarra",
-          "total": 1000
+          "productos": producto_unidades
         }
         tienda[2]["pedidos"].push(pedido);
         //-- Convertir a JSON y registrarlo
