@@ -155,7 +155,7 @@ function get_carrito(req){
 
       //-- Si nombre = carrito registramos los articulos
       if (nombre.trim() === 'carrito') {
-        productos = valor.split(:);
+        productos = valor.split(':');
         productos.forEach((producto) => {
           if (producto == 'guitarra'){
             if (num_guitarras == 0) {
@@ -270,7 +270,41 @@ const server = http.createServer((req, res) => {
     }
 
     //-- Procesar los articulos que van al carrito
-    
+    if (myURL.pathname == '/añadir_guitarra'){
+      if (carrito_existe) {
+        añadir_al_carrito(req, res, 'guitarra');
+      }else{
+        res.setHeader('Set-Cookie', 'carrito=guitarra');
+        carrito_existe = true;
+      }
+    }
+
+    if (myURL.pathname == '/añadir_piano'){
+      if (carrito_existe) {
+        añadir_al_carrito(req, res, 'piano');
+      }else{
+        res.setHeader('Set-Cookie', 'carrito=piano');
+        carrito_existe = true;
+      }
+    }
+
+    if (myURL.pathname == '/añadir_acordeon'){
+      if (carrito_existe) {
+        añadir_al_carrito(req, res, 'acordeon');
+      }else{
+        res.setHeader('Set-Cookie', 'carrito=acordeon');
+        carrito_existe = true;
+      }
+    }
+
+    if (myURL.pathname == '/añadir_bateria'){
+      if (carrito_existe) {
+        añadir_al_carrito(req, res, 'bateria');
+      }else{
+        res.setHeader('Set-Cookie', 'carrito=bateria');
+        carrito_existe = true;
+      }
+    }
 
     //-- Acceso al formulario login
     if (myURL.pathname == '/login') {
