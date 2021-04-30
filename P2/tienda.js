@@ -127,7 +127,7 @@ const server = http.createServer((req, res) => {
       if (user) {
         //-- Anadir a la página el nombre del usuario
         content = INICIO.replace("HTML_EXTRA", "<h2>Usuario: " + user + "</h2>" +
-                  `<form action="/pedido" method="get"><input type="submit" value="Carrito"/></form>`);
+                  `<form action="/carrito" method="get"><input type="submit" value="Carrito"/></form>`);
       }else{
         //-- Mostrar el enlace al formulario Login
         content = INICIO.replace("HTML_EXTRA", 
@@ -196,6 +196,12 @@ const server = http.createServer((req, res) => {
         }else{
             content = LOGIN_KO;
         }
+    }
+
+    //-- Acceso al carrito
+    if (myURL.pathname == '/carrito') {
+      content_type = mime_type["html"]; 
+      content = CARRITO;
     }
 
     //-- Acceso al formulario pedido
