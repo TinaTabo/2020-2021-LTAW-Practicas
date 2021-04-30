@@ -42,6 +42,7 @@ const FORMULARIO_PEDIDO = fs.readFileSync('pedido.html','utf-8');
 const LOGIN_OK = fs.readFileSync('login-ok.html','utf-8');
 const LOGIN_KO = fs.readFileSync('login-ko.html','utf-8');
 const PEDIDO_OK = fs.readFileSync('pedido-ok.html', 'utf-8');
+const ADD_OK = fs.readFileSync('add-ok.html', 'utf-8');
 
 //-- Registro -> Fichero JSON
 const FICHERO_JSON = "tienda.json";
@@ -271,8 +272,8 @@ const server = http.createServer((req, res) => {
 
     //-- Procesar los articulos que van al carrito
     if (myURL.pathname == '/add_guitarra'){
-      content_type = mime_type["html"];
-      content = CARRITO;
+      content_type = mime_type['html'];
+      content = ADD_OK;
       if (carrito_existe) {
         add_al_carrito(req, res, 'guitarra');
       }else{
@@ -282,8 +283,8 @@ const server = http.createServer((req, res) => {
     }
 
     if (myURL.pathname == '/add_piano'){
-      content_type = mime_type["html"];
-      content = CARRITO;
+      content_type = mime_type['html'];
+      content = ADD_OK;
       if (carrito_existe) {
         add_al_carrito(req, res, 'piano');
       }else{
@@ -293,8 +294,8 @@ const server = http.createServer((req, res) => {
     }
 
     if (myURL.pathname == '/add_acordeon'){
-      content_type = mime_type["html"];
-      content = CARRITO;
+      content_type = mime_type['html'];
+      content = ADD_OK;
       if (carrito_existe) {
         add_al_carrito(req, res, 'acordeon');
       }else{
@@ -304,14 +305,20 @@ const server = http.createServer((req, res) => {
     }
 
     if (myURL.pathname == '/add_bateria'){
-      content_type = mime_type["html"];
-      content = CARRITO;
+      content_type = mime_type['html'];
+      content = ADD_OK;
       if (carrito_existe) {
         add_al_carrito(req, res, 'bateria');
       }else{
         res.setHeader('Set-Cookie', 'carrito=bateria');
         carrito_existe = true;
       }
+    }
+
+    if (myURL.pathname == '/carrito'){
+      content_type = mime_type['html'];
+      content = CARRITO;
+      get_carrito(req);
     }
 
     //-- Acceso al formulario login
