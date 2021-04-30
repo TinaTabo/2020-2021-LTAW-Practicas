@@ -36,6 +36,37 @@ tienda[1]["usuarios"].forEach((element, index)=>{
   });
 console.log();
 
+//-- Analizar la cookie y devolver el nombre de usuario si existe,
+//-- null en caso contrario.
+function get_user(req) {
+  
+  //-- Leer la cookie recibida
+  const cookie = req.headers.cookie;
+
+  //-- Si hay cookie, guardamos el usuario
+  if (cookie) {
+    //-- Obtener un array con todos los pares nombre-valor
+    let pares = cookie.split(";");
+
+    //-- Variable para guardar el usuario
+    let user;
+
+    //-- Recorrer todos los pares nombre-valor
+    pares.forEach((element, index) => {
+      //-- Obtener los nombre y los valores por separado
+      let [nombre, valor] = element.split('=');
+
+      //-- Leer el usuario solo si nombre = user
+      if (nombre.trim() === 'user') {
+        user = valor;
+      }
+    });
+
+    //-- si user no esta asignada se devuelve null
+    return user || null;
+  }
+}
+
 //-- Crear el SERVIDOR.
 const server = http.createServer((req, res) => {
 
@@ -47,9 +78,23 @@ const server = http.createServer((req, res) => {
     console.log("  Ruta: " + myURL.pathname);
     console.log("  Parametros: " + myURL.searchParams);
 
+    //-- Obtener el usuario que ha accedido
+    let user = get_user(req);
+
     //-- Por defecto -> pagina de inicio
     let content_type = "text/html";
     let content = INICIO;
+    if (myURL.pathname == '/'){
+      //-- Si la variable user está asignada
+      //-- no mostrar el acceso a login.
+      if (user) {
+        //-- Anadir a la página el nombre del usuario
+        content = INICIO.replace("HTML_EXTRA", "<h2>Usuario: " + user + "</h2>");
+      }else{
+        //-- Mostrar el enlace al formulario Login
+        content = INICIO.replace("HTML_EXTRA", `<input type="submit" value="Login"/>`);
+      }
+    }
 
     //-- Acceso al formulario login
     if (myURL.pathname == '/login') {
@@ -66,6 +111,9 @@ const server = http.createServer((req, res) => {
         content_type = "text/html";
         if (users_reg.includes(user)){
             console.log('El usuario esta registrado');
+            //-- Asignar la cookie al usuario registrado.
+            res.setHeader('Set-Cookie', "user=" + user);
+            //-- Asignar la página web de login ok.
             content = LOGIN_OK;
             html_extra = user;
             content = content.replace("HTML_EXTRA", html_extra);
