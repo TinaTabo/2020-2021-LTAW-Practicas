@@ -118,6 +118,27 @@ const server = http.createServer((req, res) => {
       }
     }
 
+    //-- Acceso a las pagina de los productos
+    if (myURL.pathname == '/producto1'){
+      content_type = "text/html";
+      content = PRODUCTO1;
+    }
+
+    if (myURL.pathname == '/producto2'){
+      content_type = "text/html";
+      content = PRODUCTO2;
+    }
+
+    if (myURL.pathname == '/producto3'){
+      content_type = "text/html";
+      content = PRODUCTO1;
+    }
+
+    if (myURL.pathname == '/producto4'){
+      content_type = "text/html";
+      content = PRODUCTO1;
+    }
+
     //-- Acceso al formulario login
     if (myURL.pathname == '/login') {
         content_type = "text/html";
