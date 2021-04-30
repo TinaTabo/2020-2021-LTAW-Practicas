@@ -3,20 +3,17 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Producto 3</title>
+        <title>Carrito</title>
     </head>
     <body>
-        <h2>Producto 3</h2>
+        <h2>Carrito</h2>
+        <h3>Productos en la cesta:</h3>
+        PRODUCTOS
         <br>
-        <br>
-        <div id='descripcion'>
-            DESCRIPCION
-        </div>
-        <br>
-        <div id='precio'>
-            PRECIO
-        </div>
-        <a href="/"><button>Añadir al carrito</button></a>
+        <!-- link al formulario para tramitar la compra -->
+        <form action="/pedido" method="get">
+            <input type="submit" value="Tramitar Pedido"/>
+        </form>
         <a href="/"><button>Acceso a pagina principal</button></a>
     </body>
 </html>
