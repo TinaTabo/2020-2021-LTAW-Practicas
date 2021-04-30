@@ -51,8 +51,10 @@ console.log("Lista de productos disponibles");
 console.log("-----------------------------");
 tienda[0]["productos"].forEach((element, index)=>{
   console.log("Producto " + (index + 1) + ": " + element.nombre +
-              ", Stock: " + element.stock);
-  productos_disp.push([element.nombre, element.descripcion, element.stock]);
+              ", Stock: " + element.stock + ", Precio: " + element.precio 
+              + ", Descuento: " + element.descuento);
+  productos_disp.push([element.nombre, element.descripcion, element.stock, 
+                       element.precio, element.descuento]);
 });
 console.log();
 
@@ -122,21 +124,37 @@ const server = http.createServer((req, res) => {
     if (myURL.pathname == '/producto1'){
       content_type = "text/html";
       content = PRODUCTO1;
+      content = content.replace('NOMBRE', productos_disp[0][0]);
+      content = content.replace('DESCRIPCION', productos_disp[0][1]);
+      content = content.replace('PRECIO', productos_disp[0][3]);
+      content = content.replace('DESCUENTO', productos_disp[0][4]);
     }
 
     if (myURL.pathname == '/producto2'){
       content_type = "text/html";
       content = PRODUCTO2;
+      content = content.replace('NOMBRE', productos_disp[1][0]);
+      content = content.replace('DESCRIPCION', productos_disp[1][1]);
+      content = content.replace('PRECIO', productos_disp[1][3]);
+      content = content.replace('DESCUENTO', productos_disp[1][4]);
     }
 
     if (myURL.pathname == '/producto3'){
       content_type = "text/html";
-      content = PRODUCTO1;
+      content = PRODUCTO3;
+      content = content.replace('NOMBRE', productos_disp[2][0]);
+      content = content.replace('DESCRIPCION', productos_disp[2][1]);
+      content = content.replace('PRECIO', productos_disp[2][3]);
+      content = content.replace('DESCUENTO', productos_disp[2][4]);
     }
 
     if (myURL.pathname == '/producto4'){
       content_type = "text/html";
-      content = PRODUCTO1;
+      content = PRODUCTO4;
+      content = content.replace('NOMBRE', productos_disp[3][0]);
+      content = content.replace('DESCRIPCION', productos_disp[3][1]);
+      content = content.replace('PRECIO', productos_disp[3][3]);
+      content = content.replace('DESCUENTO', productos_disp[3][4]);
     }
 
     //-- Acceso al formulario login
@@ -186,7 +204,8 @@ const server = http.createServer((req, res) => {
           "user": user,
           "dirección": direccion,
           "tarjeta": tarjeta,
-          "productos": productos_disp
+          "productos": "guitarra",
+          "total": 1000
         }
         tienda[2]["pedidos"].push(pedido);
         //-- Convertir a JSON y registrarlo
