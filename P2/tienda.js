@@ -7,6 +7,15 @@ const PUERTO = 9000;
 //-- Cargar la pagina principal de la web
 const INICIO = fs.readFileSync('inicio.html', 'utf-8');
 
+//-- Cargar las paginas de los productos
+const PRODUCTO1 = fs.readFileSync('producto1.html', 'utf-8');
+const PRODUCTO2 = fs.readFileSync('producto2.html', 'utf-8');
+const PRODUCTO3 = fs.readFileSync('producto3.html', 'utf-8');
+const PRODUCTO4 = fs.readFileSync('producto4.html', 'utf-8');
+
+//-- Cargar la pagina del Carrito
+const CARRITO = fs.readFileSync('carrito.html','utf-8');
+
 //-- Cargar pagina web del formulario login
 const FORMULARIO_LOGIN = fs.readFileSync('login.html','utf-8');
 const FORMULARIO_PEDIDO = fs.readFileSync('pedido.html','utf-8');
@@ -34,6 +43,17 @@ tienda[1]["usuarios"].forEach((element, index)=>{
     console.log("Usuario " + (index + 1) + ": " + element.user);
     users_reg.push(element.user);
   });
+console.log();
+
+//-- Crear una lista de productos disponibles.
+let productos_disp = [];
+console.log("Lista de productos disponibles");
+console.log("-----------------------------");
+tienda[0]["productos"].forEach((element, index)=>{
+  console.log("Producto " + (index + 1) + ": " + element.nombre +
+              ", Stock: " + element.stock);
+  productos_disp.push([element.nombre, element.descripcion, element.stock]);
+});
 console.log();
 
 //-- Analizar la cookie y devolver el nombre de usuario si existe,
