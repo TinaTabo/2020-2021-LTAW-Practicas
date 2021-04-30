@@ -31,6 +31,9 @@ const PRODUCTO4 = fs.readFileSync('producto4.html', 'utf-8');
 //-- Cargar la pagina del Carrito
 const CARRITO = fs.readFileSync('carrito.html','utf-8');
 
+//-- Variable para saber si hay articulos en el carrito
+let carrito_existe = false;
+
 //-- Cargar pagina web del formulario login
 const FORMULARIO_LOGIN = fs.readFileSync('login.html','utf-8');
 const FORMULARIO_PEDIDO = fs.readFileSync('pedido.html','utf-8');
@@ -104,6 +107,100 @@ function get_user(req) {
   }
 }
 
+//-- Funcion para crear las cookies al añadir articulos al carrito.
+function añadir_al_carrito(req, res, producto) {
+  const cookie = req.headers.cookie;
+
+  if (cookie) {
+    //-- Obtener un array con todos los pares nombre-valor
+    let pares = cookie.split(";");
+
+    //-- Recorrer todos los pares nombre-valor
+    pares.forEach((element, index) => {
+      //-- Obtener los nombre y los valores por separado
+      let [nombre, valor] = element.split('=');
+
+      //-- Si nombre = carrito enviamos cookie de respuesta
+      if (nombre.trim() === 'carrito') {
+        res.setHeader('Set-Cookie', element + ':' + producto);
+      }
+    });
+  }
+}
+
+//-- Obtener el carrito
+function get_carrito(req){
+  //-- Leer la cookie recibida
+  const cookie = req.headers.cookie;
+
+  if (cookie){
+    //-- Obtener un array con todos los pares nombre-valor
+    let pares = cookie.split(";");
+
+    //-- Variables para guardar los datos del carrito
+    let carrito;
+    let guitarra = '';
+    let num_guitarras = 0;
+    let piano = '';
+    let num_pianos = 0;
+    let acordeon = '';
+    let num_acordeones = 0;
+    let bateria = '';
+    let num_baterias = 0;
+
+    //-- Recorrer todos los pares nombre-valor
+    pares.forEach((element, index) => {
+      //-- Obtener los nombre y los valores por separado
+      let [nombre, valor] = element.split('=');
+
+      //-- Si nombre = carrito registramos los articulos
+      if (nombre.trim() === 'carrito') {
+        productos = valor.split(:);
+        productos.forEach((producto) => {
+          if (producto == 'guitarra'){
+            if (num_guitarras == 0) {
+              guitarra = productos_disp[0][0];
+            }
+            num_guitarras += 1;
+          }else if (producto == 'piano'){
+            if (num_pianos == 0){
+              piano = productos_disp[1][0];
+            }
+            num_pianos += 1;
+          }else if (producto == 'acordeon'){
+            if (num_acordeones == 0){
+              acordeon = productos_disp[2][0];
+            }
+            num_acordeones += 1;
+          }else if (producto == 'bateria'){
+            if (num_baterias == 0){
+              bateria = productos_disp[3][0];
+            }
+            num_baterias += 1;
+          }
+        });
+
+        if (num_guitarras != 0) {
+          guitarra += ' x ' + num_guitarras;
+        }
+        if (num_pianos != 0) {
+          piano += ' x ' + num_pianos;
+        }
+        if (num_acordeones != 0) {
+          acordeon += ' x ' + num_acordeones;
+        }
+        if (num_baterias != 0) {
+          bateria += ' x ' + num_baterias;
+        }
+        carrito = guitarra + '<br>' + piano + '<br>' + acordeon + '<br>' + bateria;
+      }
+    });
+
+    //-- Si esta vacío se devuelve null
+    return carrito || null;
+  }
+}
+
 //-- Crear el SERVIDOR.
 const server = http.createServer((req, res) => {
 
@@ -171,6 +268,9 @@ const server = http.createServer((req, res) => {
       content = content.replace('PRECIO', productos_disp[3][3]);
       content = content.replace('DESCUENTO', productos_disp[3][4]);
     }
+
+    //-- Procesar los articulos que van al carrito
+    
 
     //-- Acceso al formulario login
     if (myURL.pathname == '/login') {
