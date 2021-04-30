@@ -15,6 +15,11 @@
                 "nombre": "acordeon",
                 "descripcion": "producto 3",
                 "stock": 7
+            },
+            {
+                "nombre": "bateria",
+                "descripcion": "producto 4",
+                "stock": 2
             }
         ]
     },
