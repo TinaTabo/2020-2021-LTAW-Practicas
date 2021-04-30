@@ -378,8 +378,16 @@ const server = http.createServer((req, res) => {
       });
       
       //-- Actualizar en la base de datos el stock de los productos.
+      tienda[0]["productos"].forEach((element, index)=>{
+        console.log("Producto " + (index + 1) + ": " + element.nombre);
+        console.log(list_productos[index]);
+        console.log();
+        if (element.nombre == list_productos[index]){
+          element.stock = element.stock - list_unidades[index];
+        }
+      });
+      console.log();
       
-
       //-- Guardar datos del pedido en el registro tienda.json
       //-- si este no es nulo (null)
       if ((direccion != null) && (tarjeta != null)) {
