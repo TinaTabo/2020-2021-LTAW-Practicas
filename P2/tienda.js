@@ -218,8 +218,9 @@ const server = http.createServer((req, res) => {
     console.log("  Ruta: " + myURL.pathname);
     console.log("  Parametros: " + myURL.searchParams);
 
-    //-- Obtener el usuario que ha accedido
-    let user = get_user(req);
+    //-- Variables para el mensaje de respuesta
+    let content_type = mime_type["html"];
+    let content = "";
 
     //-- Leer recurso y eliminar la / inicial
     let recurso = myURL.pathname;
@@ -229,8 +230,10 @@ const server = http.createServer((req, res) => {
       case '':
           console.log("Main page");
           //-- Por defecto -> pagina de inicio
-          let content_type = mime_type["html"]; 
-          let content = INICIO;
+          content = INICIO;
+
+           //-- Obtener el usuario que ha accedido
+          let user = get_user(req);
 
           //-- Si la variable user está asignada
           //-- no mostrar el acceso a login.
@@ -246,7 +249,6 @@ const server = http.createServer((req, res) => {
           break;
       //-- Paginas de los distintos productos.
       case 'producto1':
-        content_type = mime_type["html"]; 
         content = PRODUCTO1;
         content = content.replace('NOMBRE', productos_disp[0][0]);
         content = content.replace('DESCRIPCION', productos_disp[0][1]);
@@ -254,8 +256,7 @@ const server = http.createServer((req, res) => {
         content = content.replace('DESCUENTO', productos_disp[0][4]);
         break;
       
-      case 'producto2':
-        content_type = mime_type["html"]; 
+      case 'producto2': 
         content = PRODUCTO2;
         content = content.replace('NOMBRE', productos_disp[1][0]);
         content = content.replace('DESCRIPCION', productos_disp[1][1]);
@@ -264,7 +265,6 @@ const server = http.createServer((req, res) => {
         break;
 
       case 'producto3':
-        content_type = mime_type["html"]; 
         content = PRODUCTO3;
         content = content.replace('NOMBRE', productos_disp[2][0]);
         content = content.replace('DESCRIPCION', productos_disp[2][1]);
@@ -272,8 +272,7 @@ const server = http.createServer((req, res) => {
         content = content.replace('DESCUENTO', productos_disp[2][4]);
         break;
 
-      case 'producto4':
-        content_type = mime_type["html"]; 
+      case 'producto4': 
         content = PRODUCTO4;
         content = content.replace('NOMBRE', productos_disp[3][0]);
         content = content.replace('DESCRIPCION', productos_disp[3][1]);
@@ -283,7 +282,6 @@ const server = http.createServer((req, res) => {
 
       //-- Añadir al carrito los distintos productos
       case 'add_guitarra':
-        content_type = mime_type['html'];
         content = ADD_OK;
         if (carrito_existe) {
           add_al_carrito(req, res, 'guitarra');
@@ -294,7 +292,6 @@ const server = http.createServer((req, res) => {
         break;
 
       case 'add_piano':
-        content_type = mime_type['html'];
         content = ADD_OK;
         if (carrito_existe) {
           add_al_carrito(req, res, 'piano');
@@ -305,7 +302,6 @@ const server = http.createServer((req, res) => {
         break;
       
       case 'add_acordeon':
-        content_type = mime_type['html'];
         content = ADD_OK;
         if (carrito_existe) {
           add_al_carrito(req, res, 'acordeon');
@@ -316,7 +312,6 @@ const server = http.createServer((req, res) => {
         break;
 
       case 'add_bateria':
-        content_type = mime_type['html'];
         content = ADD_OK;
         if (carrito_existe) {
           add_al_carrito(req, res, 'bateria');
@@ -327,7 +322,6 @@ const server = http.createServer((req, res) => {
         break;
       
       case 'carrito':
-        content_type = mime_type['html'];
         content = CARRITO;
         let carrito = get_carrito(req);
         content = content.replace("PRODUCTOS", carrito);
@@ -335,24 +329,22 @@ const server = http.createServer((req, res) => {
       
       //-- Acceso al formulario Login
       case 'login':
-        content_type = mime_type["html"]; 
         content = FORMULARIO_LOGIN;
         break;
       
       //-- Procesar la respuesta del formulario login
       case 'procesarlogin':
         //-- Obtener el nombre de usuario
-        let user = myURL.searchParams.get('nombre');
-        console.log('Nombre: ' + user);
+        let usuario = myURL.searchParams.get('nombre');
+        console.log('Nombre: ' + usuario);
         //-- Dar bienvenida solo a usuarios registrados.
-        content_type = mime_type["html"]; 
-        if (users_reg.includes(user)){
+        if (users_reg.includes(usuario)){
             console.log('El usuario esta registrado');
             //-- Asignar la cookie al usuario registrado.
-            res.setHeader('Set-Cookie', "user=" + user);
+            res.setHeader('Set-Cookie', "user=" + usuario);
             //-- Asignar la página web de login ok.
             content = LOGIN_OK;
-            html_extra = user;
+            html_extra = usuario;
             content = content.replace("HTML_EXTRA", html_extra);
         }else{
             content = LOGIN_KO;
@@ -361,7 +353,6 @@ const server = http.createServer((req, res) => {
       
       //-- Acceso al formulario de pedidos
       case 'pedido':
-        content_type = mime_type["html"]; 
         content = FORMULARIO_PEDIDO;
         break;
       
@@ -374,8 +365,8 @@ const server = http.createServer((req, res) => {
         console.log("Dirección de envío: " + direccion + "\n" +
                     "Número de la tarjeta: " + tarjeta + "\n");
         //-- Obtener la lista de productos y la cantidad
-        let carrito = get_carrito(req);
-        producto_unidades = carrito.split('<br>');
+        carro = get_carrito(req);
+        producto_unidades = carro.split('<br>');
         console.log(producto_unidades);
 
         //-- Arrays para guardar los productos adquiridos
@@ -403,7 +394,7 @@ const server = http.createServer((req, res) => {
         //-- si este no es nulo (null)
         if ((direccion != null) && (tarjeta != null)) {
           let pedido = {
-            "user": user,
+            "user": get_user(req),
             "dirección": direccion,
             "tarjeta": tarjeta,
             "productos": producto_unidades
@@ -414,7 +405,6 @@ const server = http.createServer((req, res) => {
           fs.writeFileSync(FICHERO_JSON_PRUEBA, myTienda);
         }
         //-- Confirmar pedido
-        content_type = mime_type["html"]; 
         console.log('Pedido procesado correctamente');
         content = PEDIDO_OK;
         break;
