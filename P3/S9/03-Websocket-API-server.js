@@ -1,13 +1,9 @@
-//-- importamos el objeto server
 const WebSocketServer = require('websocket').server;
-
-//-- importamos el paquete http
 const http = require('http');
 
 //-- Vamos a dar un poquito de color...
 const colors = require('colors');
 
-//-- Asignamos el puerto
 const PUERTO = 8080;
 
 //-- Crear servidor. No tiene recursos implementados
