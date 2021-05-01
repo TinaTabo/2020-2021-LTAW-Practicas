@@ -22,6 +22,9 @@ const mime_type = {
 //-- Cargar la pagina principal de la web
 const INICIO = fs.readFileSync('inicio.html', 'utf-8');
 
+//-- Cargar pagina de error
+const ERROR = fs.readFileSync('error-page.html', 'utf-8');
+
 //-- Cargar las paginas de los productos
 const PRODUCTO1 = fs.readFileSync('producto1.html', 'utf-8');
 const PRODUCTO2 = fs.readFileSync('producto2.html', 'utf-8');
@@ -66,6 +69,7 @@ console.log();
 
 //-- Crear una lista de productos disponibles.
 let productos_disp = [];
+let product_list = [];
 console.log("Lista de productos disponibles");
 console.log("-----------------------------");
 tienda[0]["productos"].forEach((element, index)=>{
@@ -74,6 +78,7 @@ tienda[0]["productos"].forEach((element, index)=>{
               + ", Descuento: " + element.descuento);
   productos_disp.push([element.nombre, element.descripcion, element.stock, 
                        element.precio, element.descuento]);
+  product_list.push(element.nombre);
 });
 console.log();
 
@@ -216,22 +221,88 @@ const server = http.createServer((req, res) => {
     //-- Obtener el usuario que ha accedido
     let user = get_user(req);
 
-    //-- Por defecto -> pagina de inicio
-    let content_type = mime_type["html"]; 
-    let content = INICIO;
-    if (myURL.pathname == '/'){
-      //-- Si la variable user está asignada
-      //-- no mostrar el acceso a login.
-      if (user) {
-        //-- Anadir a la página el nombre del usuario
-        content = INICIO.replace("HTML_EXTRA", "<h2>Usuario: " + user + "</h2>" +
-                  `<form action="/carrito" method="get"><input type="submit" value="Carrito"/></form>`);
-      }else{
-        //-- Mostrar el enlace al formulario Login
-        content = INICIO.replace("HTML_EXTRA", 
-                  `<form action="/login" method="get"><input type="submit" value="Login"/></form>`);
-      }
-    }
+    //-- Leer recurso y eliminar la / inicial
+    let recurso = myURL.pathname;
+    recurso = recurso.substr(1); 
+
+    switch (recurso) {
+      case '':
+          console.log("Main page");
+          //-- Por defecto -> pagina de inicio
+          let content_type = mime_type["html"]; 
+          let content = INICIO;
+
+          //-- Si la variable user está asignada
+          //-- no mostrar el acceso a login.
+          if (user) {
+            //-- Anadir a la página el nombre del usuario
+            content = INICIO.replace("HTML_EXTRA", "<h2>Usuario: " + user + "</h2>" +
+                      `<form action="/carrito" method="get"><input type="submit" value="Carrito"/></form>`);
+          }else{
+            //-- Mostrar el enlace al formulario Login
+            content = INICIO.replace("HTML_EXTRA", 
+                      `<form action="/login" method="get"><input type="submit" value="Login"/></form>`);
+          }
+          break;
+
+      case 'productos':
+          console.log("Peticion de Productos!")
+          content_type = mime_type["json"]; 
+
+          //-- Leer los parámetros
+          let param1 = myURL.searchParams.get('param1');
+
+          param1 = param1.toUpperCase();
+
+          console.log("  Param: " +  param1);
+
+          let result = [];
+
+          for (let prod of product_list) {
+
+              //-- Pasar a mayúsculas
+              prodU = prod.toUpperCase();
+
+              //-- Si el producto comienza por lo indicado en el parametro
+              //-- meter este producto en el array de resultados
+              if (prodU.startsWith(param1)) {
+                  result.push(prod);
+              }
+              
+          }
+          console.log(result);
+          content = JSON.stringify(result);
+          break;
+
+      case 'cliente.js':
+          //-- Leer fichero javascript
+          console.log("recurso: " + recurso);
+          fs.readFile(recurso, 'utf-8', (err,data) => {
+              if (err) {
+                  console.log("Error: " + err)
+                  return;
+              } else {
+                res.setHeader('Content-Type', mime_type["js"]);
+                res.write(data);
+                res.end();
+              }
+          });
+          
+          return;
+          break;
+
+          //-- Si no es ninguna de las anteriores devolver mensaje de error
+      default:
+          res.setHeader('Content-Type', mime_type["html"]);
+          res.statusCode = 404;
+          res.write(ERROR);
+          res.end();
+          return;
+  }
+
+
+
+
 
     //-- Acceso a las pagina de los productos
     if (myURL.pathname == '/producto1'){
@@ -408,22 +479,32 @@ const server = http.createServer((req, res) => {
       content = PEDIDO_OK;
      }
 
+
+
+
+
+
+
+
+
+
+
     //-- Si hay datos en el cuerpo, se imprimen
-  req.on('data', (cuerpo) => {
+    req.on('data', (cuerpo) => {
 
-    //-- Los datos del cuerpo son caracteres
-    req.setEncoding('utf8');
-    console.log(`Cuerpo (${cuerpo.length} bytes)`)
-    console.log(` ${cuerpo}`);
-  });
+      //-- Los datos del cuerpo son caracteres
+      req.setEncoding('utf8');
+      console.log(`Cuerpo (${cuerpo.length} bytes)`)
+      console.log(` ${cuerpo}`);
+    });
 
-  //-- Esto solo se ejecuta cuando llega el final del mensaje de solicitud
-  req.on('end', ()=> {
-    //-- Generar respuesta
-    res.setHeader('Content-Type', content_type);
-    res.write(content);
-    res.end()
-  });
+    //-- Esto solo se ejecuta cuando llega el final del mensaje de solicitud
+    req.on('end', ()=> {
+      //-- Generar respuesta
+      res.setHeader('Content-Type', content_type);
+      res.write(content);
+      res.end()
+    });
 
 });
 
