@@ -333,7 +333,36 @@ const server = http.createServer((req, res) => {
         content = content.replace("PRODUCTOS", carrito);
         break;
       
-      //-- 
+      //-- Acceso al formulario Login
+      case 'login':
+        content_type = mime_type["html"]; 
+        content = FORMULARIO_LOGIN;
+        break;
+      
+      //-- Procesar la respuesta del formulario login
+      case 'procesarlogin':
+        //-- Obtener el nombre de usuario
+        let user = myURL.searchParams.get('nombre');
+        console.log('Nombre: ' + user);
+        //-- Dar bienvenida solo a usuarios registrados.
+        content_type = mime_type["html"]; 
+        if (users_reg.includes(user)){
+            console.log('El usuario esta registrado');
+            //-- Asignar la cookie al usuario registrado.
+            res.setHeader('Set-Cookie', "user=" + user);
+            //-- Asignar la página web de login ok.
+            content = LOGIN_OK;
+            html_extra = user;
+            content = content.replace("HTML_EXTRA", html_extra);
+        }else{
+            content = LOGIN_KO;
+        }
+        break;
+      
+      //-- Acceso al formulario de pedidos
+      case 'pedido':
+
+        break;
 
       case 'productos':
           console.log("Peticion de Productos!")
@@ -392,31 +421,6 @@ const server = http.createServer((req, res) => {
 
 
 
-    //-- Acceso al formulario login
-    if (myURL.pathname == '/login') {
-        content_type = mime_type["html"]; 
-        content = FORMULARIO_LOGIN;
-    }
-
-    //-- Procesar la respuesta del formulario login
-    if (myURL.pathname == '/procesarlogin') {
-        //-- Obtener el nombre de usuario
-        let user = myURL.searchParams.get('nombre');
-        console.log('Nombre: ' + user);
-        //-- Dar bienvenida solo a usuarios registrados.
-        content_type = mime_type["html"]; 
-        if (users_reg.includes(user)){
-            console.log('El usuario esta registrado');
-            //-- Asignar la cookie al usuario registrado.
-            res.setHeader('Set-Cookie', "user=" + user);
-            //-- Asignar la página web de login ok.
-            content = LOGIN_OK;
-            html_extra = user;
-            content = content.replace("HTML_EXTRA", html_extra);
-        }else{
-            content = LOGIN_KO;
-        }
-    }
 
     //-- Acceso al formulario pedido
     if (myURL.pathname == '/pedido') {
