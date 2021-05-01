@@ -44,8 +44,8 @@ const FORMULARIO_PEDIDO = fs.readFileSync('pedido.html','utf-8');
 //-- Cargar las paginas de respuesta
 const LOGIN_OK = fs.readFileSync('login-ok.html','utf-8');
 const LOGIN_KO = fs.readFileSync('login-ko.html','utf-8');
-const PEDIDO_OK = fs.readFileSync('pedido-ok.html', 'utf-8');
-const ADD_OK = fs.readFileSync('add-ok.html', 'utf-8');
+const PEDIDO_OK = fs.readFileSync('pedido-ok.html','utf-8');
+const ADD_OK = fs.readFileSync('add-ok.html','utf-8');
 
 //-- Registro -> Fichero JSON
 const FICHERO_JSON = "tienda.json";
