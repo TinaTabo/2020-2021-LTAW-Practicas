@@ -244,7 +244,7 @@ const server = http.createServer((req, res) => {
                       `<form action="/login" method="get"><input type="submit" value="Login"/></form>`);
           }
           break;
-      
+      //-- Paginas de los distintos productos.
       case 'producto1':
         content_type = mime_type["html"]; 
         content = PRODUCTO1;
@@ -280,6 +280,60 @@ const server = http.createServer((req, res) => {
         content = content.replace('PRECIO', productos_disp[3][3]);
         content = content.replace('DESCUENTO', productos_disp[3][4]);
         break;
+
+      //-- Añadir al carrito los distintos productos
+      case 'add_guitarra':
+        content_type = mime_type['html'];
+        content = ADD_OK;
+        if (carrito_existe) {
+          add_al_carrito(req, res, 'guitarra');
+        }else{
+          res.setHeader('Set-Cookie', 'carrito=guitarra');
+          carrito_existe = true;
+        }
+        break;
+
+      case 'add_piano':
+        content_type = mime_type['html'];
+        content = ADD_OK;
+        if (carrito_existe) {
+          add_al_carrito(req, res, 'piano');
+        }else{
+          res.setHeader('Set-Cookie', 'carrito=piano');
+          carrito_existe = true;
+        }
+        break;
+      
+      case 'add_acordeon':
+        content_type = mime_type['html'];
+        content = ADD_OK;
+        if (carrito_existe) {
+          add_al_carrito(req, res, 'acordeon');
+        }else{
+          res.setHeader('Set-Cookie', 'carrito=acordeon');
+          carrito_existe = true;
+        }
+        break;
+
+      case 'add_bateria':
+        content_type = mime_type['html'];
+        content = ADD_OK;
+        if (carrito_existe) {
+          add_al_carrito(req, res, 'bateria');
+        }else{
+          res.setHeader('Set-Cookie', 'carrito=bateria');
+          carrito_existe = true;
+        }
+        break;
+      
+      case 'carrito':
+        content_type = mime_type['html'];
+        content = CARRITO;
+        let carrito = get_carrito(req);
+        content = content.replace("PRODUCTOS", carrito);
+        break;
+      
+      //-- 
 
       case 'productos':
           console.log("Peticion de Productos!")
@@ -337,58 +391,6 @@ const server = http.createServer((req, res) => {
   }
 
 
-
-    //-- Procesar los articulos que van al carrito
-    if (myURL.pathname == '/add_guitarra'){
-      content_type = mime_type['html'];
-      content = ADD_OK;
-      if (carrito_existe) {
-        add_al_carrito(req, res, 'guitarra');
-      }else{
-        res.setHeader('Set-Cookie', 'carrito=guitarra');
-        carrito_existe = true;
-      }
-    }
-
-    if (myURL.pathname == '/add_piano'){
-      content_type = mime_type['html'];
-      content = ADD_OK;
-      if (carrito_existe) {
-        add_al_carrito(req, res, 'piano');
-      }else{
-        res.setHeader('Set-Cookie', 'carrito=piano');
-        carrito_existe = true;
-      }
-    }
-
-    if (myURL.pathname == '/add_acordeon'){
-      content_type = mime_type['html'];
-      content = ADD_OK;
-      if (carrito_existe) {
-        add_al_carrito(req, res, 'acordeon');
-      }else{
-        res.setHeader('Set-Cookie', 'carrito=acordeon');
-        carrito_existe = true;
-      }
-    }
-
-    if (myURL.pathname == '/add_bateria'){
-      content_type = mime_type['html'];
-      content = ADD_OK;
-      if (carrito_existe) {
-        add_al_carrito(req, res, 'bateria');
-      }else{
-        res.setHeader('Set-Cookie', 'carrito=bateria');
-        carrito_existe = true;
-      }
-    }
-
-    if (myURL.pathname == '/carrito'){
-      content_type = mime_type['html'];
-      content = CARRITO;
-      let carrito = get_carrito(req);
-      content = content.replace("PRODUCTOS", carrito);
-    }
 
     //-- Acceso al formulario login
     if (myURL.pathname == '/login') {
