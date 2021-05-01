@@ -244,6 +244,42 @@ const server = http.createServer((req, res) => {
                       `<form action="/login" method="get"><input type="submit" value="Login"/></form>`);
           }
           break;
+      
+      case 'producto1':
+        content_type = mime_type["html"]; 
+        content = PRODUCTO1;
+        content = content.replace('NOMBRE', productos_disp[0][0]);
+        content = content.replace('DESCRIPCION', productos_disp[0][1]);
+        content = content.replace('PRECIO', productos_disp[0][3]);
+        content = content.replace('DESCUENTO', productos_disp[0][4]);
+        break;
+      
+      case 'producto2':
+        content_type = mime_type["html"]; 
+        content = PRODUCTO2;
+        content = content.replace('NOMBRE', productos_disp[1][0]);
+        content = content.replace('DESCRIPCION', productos_disp[1][1]);
+        content = content.replace('PRECIO', productos_disp[1][3]);
+        content = content.replace('DESCUENTO', productos_disp[1][4]);
+        break;
+
+      case 'producto3':
+        content_type = mime_type["html"]; 
+        content = PRODUCTO3;
+        content = content.replace('NOMBRE', productos_disp[2][0]);
+        content = content.replace('DESCRIPCION', productos_disp[2][1]);
+        content = content.replace('PRECIO', productos_disp[2][3]);
+        content = content.replace('DESCUENTO', productos_disp[2][4]);
+        break;
+
+      case 'producto4':
+        content_type = mime_type["html"]; 
+        content = PRODUCTO4;
+        content = content.replace('NOMBRE', productos_disp[3][0]);
+        content = content.replace('DESCRIPCION', productos_disp[3][1]);
+        content = content.replace('PRECIO', productos_disp[3][3]);
+        content = content.replace('DESCUENTO', productos_disp[3][4]);
+        break;
 
       case 'productos':
           console.log("Peticion de Productos!")
@@ -301,45 +337,6 @@ const server = http.createServer((req, res) => {
   }
 
 
-
-
-
-    //-- Acceso a las pagina de los productos
-    if (myURL.pathname == '/producto1'){
-      content_type = mime_type["html"]; 
-      content = PRODUCTO1;
-      content = content.replace('NOMBRE', productos_disp[0][0]);
-      content = content.replace('DESCRIPCION', productos_disp[0][1]);
-      content = content.replace('PRECIO', productos_disp[0][3]);
-      content = content.replace('DESCUENTO', productos_disp[0][4]);
-    }
-
-    if (myURL.pathname == '/producto2'){
-      content_type = mime_type["html"]; 
-      content = PRODUCTO2;
-      content = content.replace('NOMBRE', productos_disp[1][0]);
-      content = content.replace('DESCRIPCION', productos_disp[1][1]);
-      content = content.replace('PRECIO', productos_disp[1][3]);
-      content = content.replace('DESCUENTO', productos_disp[1][4]);
-    }
-
-    if (myURL.pathname == '/producto3'){
-      content_type = mime_type["html"]; 
-      content = PRODUCTO3;
-      content = content.replace('NOMBRE', productos_disp[2][0]);
-      content = content.replace('DESCRIPCION', productos_disp[2][1]);
-      content = content.replace('PRECIO', productos_disp[2][3]);
-      content = content.replace('DESCUENTO', productos_disp[2][4]);
-    }
-
-    if (myURL.pathname == '/producto4'){
-      content_type = mime_type["html"]; 
-      content = PRODUCTO4;
-      content = content.replace('NOMBRE', productos_disp[3][0]);
-      content = content.replace('DESCRIPCION', productos_disp[3][1]);
-      content = content.replace('PRECIO', productos_disp[3][3]);
-      content = content.replace('DESCUENTO', productos_disp[3][4]);
-    }
 
     //-- Procesar los articulos que van al carrito
     if (myURL.pathname == '/add_guitarra'){
