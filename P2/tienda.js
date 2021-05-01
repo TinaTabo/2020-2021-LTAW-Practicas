@@ -289,6 +289,18 @@ const server = http.createServer((req, res) => {
           res.setHeader('Set-Cookie', 'carrito=guitarra');
           carrito_existe = true;
         }
+        //-- Si se esta registrado se muestra el acceso al carrito,
+        //-- sino se muestra el acceso al login.
+        user_registrado = get_user(req);
+          if (user_registrado) {
+            //-- Mostrar el enlace al formulario Login
+            content = ADD_OK.replace("HTML_EXTRA", 
+                      `<form action="/carrito" method="get"><input type="submit" value="Ir al Carrito"/></form>`);
+          }else{
+            //-- Mostrar el enlace al formulario Login
+            content = ADD_OK.replace("HTML_EXTRA", 
+                      `<form action="/login" method="get"><input type="submit" value="Login"/></form>`);
+          }
         break;
 
       case 'add_piano':
@@ -299,6 +311,18 @@ const server = http.createServer((req, res) => {
           res.setHeader('Set-Cookie', 'carrito=piano');
           carrito_existe = true;
         }
+        //-- Si se esta registrado se muestra el acceso al carrito,
+        //-- sino se muestra el acceso al login.
+        user_registrado = get_user(req);
+          if (user_registrado) {
+            //-- Mostrar el enlace al formulario Login
+            content = ADD_OK.replace("HTML_EXTRA", 
+                      `<form action="/carrito" method="get"><input type="submit" value="Ir al Carrito"/></form>`);
+          }else{
+            //-- Mostrar el enlace al formulario Login
+            content = ADD_OK.replace("HTML_EXTRA", 
+                      `<form action="/login" method="get"><input type="submit" value="Login"/></form>`);
+          }
         break;
       
       case 'add_acordeon':
@@ -309,6 +333,18 @@ const server = http.createServer((req, res) => {
           res.setHeader('Set-Cookie', 'carrito=acordeon');
           carrito_existe = true;
         }
+        //-- Si se esta registrado se muestra el acceso al carrito,
+        //-- sino se muestra el acceso al login.
+        user_registrado = get_user(req);
+          if (user_registrado) {
+            //-- Mostrar el enlace al formulario Login
+            content = ADD_OK.replace("HTML_EXTRA", 
+                      `<form action="/carrito" method="get"><input type="submit" value="Ir al Carrito"/></form>`);
+          }else{
+            //-- Mostrar el enlace al formulario Login
+            content = ADD_OK.replace("HTML_EXTRA", 
+                      `<form action="/login" method="get"><input type="submit" value="Login"/></form>`);
+          }
         break;
 
       case 'add_bateria':
@@ -319,6 +355,18 @@ const server = http.createServer((req, res) => {
           res.setHeader('Set-Cookie', 'carrito=bateria');
           carrito_existe = true;
         }
+        //-- Si se esta registrado se muestra el acceso al carrito,
+        //-- sino se muestra el acceso al login.
+        user_registrado = get_user(req);
+          if (user_registrado) {
+            //-- Mostrar el enlace al formulario Login
+            content = ADD_OK.replace("HTML_EXTRA", 
+                      `<form action="/carrito" method="get"><input type="submit" value="Ir al Carrito"/></form>`);
+          }else{
+            //-- Mostrar el enlace al formulario Login
+            content = ADD_OK.replace("HTML_EXTRA", 
+                      `<form action="/login" method="get"><input type="submit" value="Login"/></form>`);
+          }
         break;
       
       case 'carrito':
