@@ -361,9 +361,64 @@ const server = http.createServer((req, res) => {
       
       //-- Acceso al formulario de pedidos
       case 'pedido':
-
+        content_type = mime_type["html"]; 
+        content = FORMULARIO_PEDIDO;
         break;
+      
+      //-- Procesar el formulario de pedidos
+      case 'procesarpedido':
+        //-- Guardar los datos del pedido en el fichero JSON
+        //-- Primero obtenemos los parametros
+        let direccion = myURL.searchParams.get('dirección');
+        let tarjeta = myURL.searchParams.get('tarjeta');
+        console.log("Dirección de envío: " + direccion + "\n" +
+                    "Número de la tarjeta: " + tarjeta + "\n");
+        //-- Obtener la lista de productos y la cantidad
+        let carrito = get_carrito(req);
+        producto_unidades = carrito.split('<br>');
+        console.log(producto_unidades);
 
+        //-- Arrays para guardar los productos adquiridos
+        let list_productos = [];
+        let list_unidades = [];
+        //-- Obtener numero de productos adquiridos y actualizar stock
+        producto_unidades.forEach((element, index) => {
+          let [producto, unidades] = element.split(' x ');
+          list_productos.push(producto);
+          list_unidades.push(unidades);
+        });
+        
+        //-- Actualizar en la base de datos el stock de los productos.
+        tienda[0]["productos"].forEach((element, index)=>{
+          console.log("Producto " + (index + 1) + ": " + element.nombre);
+          console.log(list_productos[index]);
+          console.log();
+          if (element.nombre == list_productos[index]){
+            element.stock = element.stock - list_unidades[index];
+          }
+        });
+        console.log();
+        
+        //-- Guardar datos del pedido en el registro tienda.json
+        //-- si este no es nulo (null)
+        if ((direccion != null) && (tarjeta != null)) {
+          let pedido = {
+            "user": user,
+            "dirección": direccion,
+            "tarjeta": tarjeta,
+            "productos": producto_unidades
+          }
+          tienda[2]["pedidos"].push(pedido);
+          //-- Convertir a JSON y registrarlo
+          let myTienda = JSON.stringify(tienda, null, 4);
+          fs.writeFileSync(FICHERO_JSON_PRUEBA, myTienda);
+        }
+        //-- Confirmar pedido
+        content_type = mime_type["html"]; 
+        console.log('Pedido procesado correctamente');
+        content = PEDIDO_OK;
+        break;
+      
       case 'productos':
           console.log("Peticion de Productos!")
           content_type = mime_type["json"]; 
@@ -418,79 +473,6 @@ const server = http.createServer((req, res) => {
           res.end();
           return;
   }
-
-
-
-
-    //-- Acceso al formulario pedido
-    if (myURL.pathname == '/pedido') {
-      content_type = mime_type["html"]; 
-      content = FORMULARIO_PEDIDO;
-    }
-
-    //-- Procesar la respuesta del formulario pedido
-    if (myURL.pathname == '/procesarpedido') {
-      //-- Guardar los datos del pedido en el fichero JSON
-      //-- Primero obtenemos los parametros
-      let direccion = myURL.searchParams.get('dirección');
-      let tarjeta = myURL.searchParams.get('tarjeta');
-      console.log("Dirección de envío: " + direccion + "\n" +
-                  "Número de la tarjeta: " + tarjeta + "\n");
-      //-- Obtener la lista de productos y la cantidad
-      let carrito = get_carrito(req);
-      producto_unidades = carrito.split('<br>');
-      console.log(producto_unidades);
-
-      //-- Arrays para guardar los productos adquiridos
-      let list_productos = [];
-      let list_unidades = [];
-      //-- Obtener numero de productos adquiridos y actualizar stock
-      producto_unidades.forEach((element, index) => {
-        let [producto, unidades] = element.split(' x ');
-        list_productos.push(producto);
-        list_unidades.push(unidades);
-      });
-      
-      //-- Actualizar en la base de datos el stock de los productos.
-      tienda[0]["productos"].forEach((element, index)=>{
-        console.log("Producto " + (index + 1) + ": " + element.nombre);
-        console.log(list_productos[index]);
-        console.log();
-        if (element.nombre == list_productos[index]){
-          element.stock = element.stock - list_unidades[index];
-        }
-      });
-      console.log();
-      
-      //-- Guardar datos del pedido en el registro tienda.json
-      //-- si este no es nulo (null)
-      if ((direccion != null) && (tarjeta != null)) {
-        let pedido = {
-          "user": user,
-          "dirección": direccion,
-          "tarjeta": tarjeta,
-          "productos": producto_unidades
-        }
-        tienda[2]["pedidos"].push(pedido);
-        //-- Convertir a JSON y registrarlo
-        let myTienda = JSON.stringify(tienda, null, 4);
-        fs.writeFileSync(FICHERO_JSON_PRUEBA, myTienda);
-      }
-      //-- Confirmar pedido
-      content_type = mime_type["html"]; 
-      console.log('Pedido procesado correctamente');
-      content = PEDIDO_OK;
-     }
-
-
-
-
-
-
-
-
-
-
 
     //-- Si hay datos en el cuerpo, se imprimen
     req.on('data', (cuerpo) => {
