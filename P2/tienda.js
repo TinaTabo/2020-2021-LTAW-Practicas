@@ -36,7 +36,7 @@ const CARRITO = fs.readFileSync('carrito.html','utf-8');
 
 //-- Variable para saber si hay articulos en el carrito
 let carrito_existe = false;
-
+let busqueda;
 //-- Cargar pagina web del formulario login
 const FORMULARIO_LOGIN = fs.readFileSync('login.html','utf-8');
 const FORMULARIO_PEDIDO = fs.readFileSync('pedido.html','utf-8');
@@ -486,8 +486,37 @@ const server = http.createServer((req, res) => {
               
           }
           console.log(result);
+          busqueda = result;
           content = JSON.stringify(result);
           break;
+        
+      case 'buscar':
+        if (busqueda == 'Guitarra DAYTONA ST-309 (Azul)') {
+          content = PRODUCTO1;
+          content = content.replace('NOMBRE', productos_disp[0][0]);
+          content = content.replace('DESCRIPCION', productos_disp[0][1]);
+          content = content.replace('PRECIO', productos_disp[0][3]);
+          content = content.replace('DESCUENTO', productos_disp[0][4]);
+        }else if(busqueda == 'Piano ROLAND FP-30'){
+          content = PRODUCTO2;
+          content = content.replace('NOMBRE', productos_disp[1][0]);
+          content = content.replace('DESCRIPCION', productos_disp[1][1]);
+          content = content.replace('PRECIO', productos_disp[1][3]);
+          content = content.replace('DESCUENTO', productos_disp[1][4]);
+        }else if(busqueda == 'Acordeón ESTRELLA 80 bajos'){
+          content = PRODUCTO2;
+          content = content.replace('NOMBRE', productos_disp[2][0]);
+          content = content.replace('DESCRIPCION', productos_disp[2][1]);
+          content = content.replace('PRECIO', productos_disp[2][3]);
+          content = content.replace('DESCUENTO', productos_disp[2][4]);
+        }else if(busqueda == 'Batería Electrica ROLAND TD-17KV'){
+          content = PRODUCTO2;
+          content = content.replace('NOMBRE', productos_disp[3][0]);
+          content = content.replace('DESCRIPCION', productos_disp[3][1]);
+          content = content.replace('PRECIO', productos_disp[3][3]);
+          content = content.replace('DESCUENTO', productos_disp[3][4]);
+        }
+        break;
     
       case 'cliente.js':
           //-- Leer fichero javascript
