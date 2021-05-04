@@ -459,6 +459,7 @@ const server = http.createServer((req, res) => {
         content = PEDIDO_OK;
         break;
       
+      //-- Barra de búsqueda
       case 'productos':
           console.log("Peticion de Productos!")
           content_type = mime_type["json"]; 
