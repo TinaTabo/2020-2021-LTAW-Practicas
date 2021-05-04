@@ -207,6 +207,17 @@ function get_carrito(req){
   }
 }
 
+var n;
+//-- Funcion para obtener la pagina del producto
+function get_producto(n, content) {
+  content = content.replace('NOMBRE', productos_disp[n][0]);
+  content = content.replace('DESCRIPCION', productos_disp[n][1]);
+  content = content.replace('PRECIO', productos_disp[n][3]);
+  content = content.replace('DESCUENTO', productos_disp[n][4]);
+
+  return content;
+}
+
 //-- Crear el SERVIDOR.
 const server = http.createServer((req, res) => {
 
@@ -249,35 +260,27 @@ const server = http.createServer((req, res) => {
           break;
       //-- Paginas de los distintos productos.
       case 'producto1':
+        n = 0;
         content = PRODUCTO1;
-        content = content.replace('NOMBRE', productos_disp[0][0]);
-        content = content.replace('DESCRIPCION', productos_disp[0][1]);
-        content = content.replace('PRECIO', productos_disp[0][3]);
-        content = content.replace('DESCUENTO', productos_disp[0][4]);
+        content = get_producto(n, content);
         break;
       
       case 'producto2': 
+        n = 1;
         content = PRODUCTO2;
-        content = content.replace('NOMBRE', productos_disp[1][0]);
-        content = content.replace('DESCRIPCION', productos_disp[1][1]);
-        content = content.replace('PRECIO', productos_disp[1][3]);
-        content = content.replace('DESCUENTO', productos_disp[1][4]);
+        content = get_producto(n, content);
         break;
 
       case 'producto3':
+        n = 2;
         content = PRODUCTO3;
-        content = content.replace('NOMBRE', productos_disp[2][0]);
-        content = content.replace('DESCRIPCION', productos_disp[2][1]);
-        content = content.replace('PRECIO', productos_disp[2][3]);
-        content = content.replace('DESCUENTO', productos_disp[2][4]);
+        content = get_producto(n, content);
         break;
 
       case 'producto4': 
+        n = 3;
         content = PRODUCTO4;
-        content = content.replace('NOMBRE', productos_disp[3][0]);
-        content = content.replace('DESCRIPCION', productos_disp[3][1]);
-        content = content.replace('PRECIO', productos_disp[3][3]);
-        content = content.replace('DESCUENTO', productos_disp[3][4]);
+        content = get_producto(n, content);
         break;
 
       //-- Añadir al carrito los distintos productos
@@ -492,29 +495,21 @@ const server = http.createServer((req, res) => {
         
       case 'buscar':
         if (busqueda == 'Guitarra DAYTONA ST-309 (Azul)') {
+          n = 0;
           content = PRODUCTO1;
-          content = content.replace('NOMBRE', productos_disp[0][0]);
-          content = content.replace('DESCRIPCION', productos_disp[0][1]);
-          content = content.replace('PRECIO', productos_disp[0][3]);
-          content = content.replace('DESCUENTO', productos_disp[0][4]);
+          content = get_producto(n, content);
         }else if(busqueda == 'Piano ROLAND FP-30'){
+          n = 1;
           content = PRODUCTO2;
-          content = content.replace('NOMBRE', productos_disp[1][0]);
-          content = content.replace('DESCRIPCION', productos_disp[1][1]);
-          content = content.replace('PRECIO', productos_disp[1][3]);
-          content = content.replace('DESCUENTO', productos_disp[1][4]);
+          content = get_producto(n, content);
         }else if(busqueda == 'Acordeón ESTRELLA 80 bajos'){
-          content = PRODUCTO2;
-          content = content.replace('NOMBRE', productos_disp[2][0]);
-          content = content.replace('DESCRIPCION', productos_disp[2][1]);
-          content = content.replace('PRECIO', productos_disp[2][3]);
-          content = content.replace('DESCUENTO', productos_disp[2][4]);
+          n = 2;
+          content = PRODUCTO3;
+          content = get_producto(n, content);
         }else if(busqueda == 'Batería Electrica ROLAND TD-17KV'){
-          content = PRODUCTO2;
-          content = content.replace('NOMBRE', productos_disp[3][0]);
-          content = content.replace('DESCRIPCION', productos_disp[3][1]);
-          content = content.replace('PRECIO', productos_disp[3][3]);
-          content = content.replace('DESCUENTO', productos_disp[3][4]);
+          n = 3;
+          content = PRODUCTO4;
+          content = get_producto(n, content);
         }
         break;
     
