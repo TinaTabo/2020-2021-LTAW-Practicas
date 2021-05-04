@@ -207,6 +207,18 @@ function get_carrito(req){
   }
 }
 
+//-- Función para obtener el stock de los productos
+function check_stock (productos_disp){
+  let stock = [];
+  productos_disp.forEach((element, index) => {
+    stock.push(element[2]);
+  });
+  console.log(stock);
+
+  //-- Si esta vacío se devuelve null
+  return stock || null;
+}
+
 //-- Crear el SERVIDOR.
 const server = http.createServer((req, res) => {
 
@@ -284,6 +296,9 @@ const server = http.createServer((req, res) => {
       case 'add_guitarra':
         content = ADD_OK;
         if (carrito_existe) {
+          stock = check_stock(productos_disp);
+          stock = stock[0];
+          console.log(stock);
           add_al_carrito(req, res, 'guitarra');
         }else{
           res.setHeader('Set-Cookie', 'carrito=guitarra');
