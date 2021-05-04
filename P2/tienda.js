@@ -402,6 +402,8 @@ const server = http.createServer((req, res) => {
       //-- Acceso al formulario de pedidos
       case 'pedido':
         content = FORMULARIO_PEDIDO;
+        let pedido = get_carrito(req);
+        content = content.replace("PRODUCTOS", pedido);
         break;
       
       //-- Procesar el formulario de pedidos
