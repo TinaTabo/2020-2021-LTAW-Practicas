@@ -488,7 +488,7 @@ const server = http.createServer((req, res) => {
           console.log(result);
           content = JSON.stringify(result);
           break;
-
+    
       case 'cliente.js':
           //-- Leer fichero javascript
           console.log("recurso: " + recurso);
