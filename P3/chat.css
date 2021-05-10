@@ -1,5 +1,5 @@
 body{
-    background-color: blueviolet;
+    background-image: url(./archivos_para_css/fondo5.jpg);
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat ;
@@ -8,7 +8,7 @@ body{
 
 @font-face {
     font-family: fuente1;
-    src: url(./archivos_para_css/fuente1.otf);
+    src: url(./archivos_para_css/fuente1.ttf);
 }
 
 @font-face {
@@ -20,10 +20,13 @@ h2{
     font-family: fuente2;
     color: rgb(218, 187, 228);
     font-size: 50px;
+    text-shadow: -1px 0 black, 0 1px black,
+	  1px 0 black, 0 -1px black
 }
 
 #msg_entry{
     border-style: ridge;
+    border-color: rgb(194, 158, 236);
     border-width: 5px;
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.548);
@@ -38,14 +41,14 @@ h2{
     border-style: outset;
     border-width: 15px;
     border-radius: 20px;
-    border-color: rgb(255, 255, 255);
+    border-color: rgb(194, 158, 236);
     background-color: rgba(0, 0, 0, 0.548);
     height: 500px;
     margin-left: 20%;
     margin-right: 20%;
     text-align: left;
     font-family: fuente1;
-    font-size: 40px;
+    font-size: 25px;
     color: rgb(218, 187, 228);
     overflow: scroll;
     padding-left: 2%;
