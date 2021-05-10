@@ -86,6 +86,8 @@ io.on('connect', (socket) => {
           break;
         case '/list':
           console.log("Mostrar número de usuarios conectados".red.bold);
+          msg = users_count;
+          socket.send("Hay " + msg + " usuarios conectados.");
           break;
         case '/hello':
           console.log("Obtener saludo del servidor".red.bold);
