@@ -12,7 +12,7 @@ const socket = io();
 
 
 socket.on("message", (msg)=>{
-  display.innerHTML += '<p style="color:blue">' + msg + '</p>';
+  display.innerHTML += '<p>' + msg + '</p>';
 });
 
 //-- MEJORA

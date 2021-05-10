@@ -18,7 +18,6 @@ const msg_hello = "Hello Army!";
 const msg_welcome = "Bienvenid@ a BangChat!";
 const msg_bye = "Bye Bye!";
 const msg_newuser = "Un/a nuev@ Army se ha unido al Chat";
-const msg_writing = "Un/a Army está escribiendo...";
 
 //-- Contador de usuarios conectados
 let users_count = 0;
@@ -45,8 +44,6 @@ app.get('/', (req, res) => {
 //-- biblioteca socket.io para el cliente
 app.use('/', express.static(__dirname +'/'));
 
-//-- El directorio publico contiene ficheros estáticos
-//--app.use(express.static('public')); <-- Lo tengo todo en la misma carpeta por lo que esto no hace falta.
 
 //------------------- GESTION SOCKETS IO
 //-- Evento: Nueva conexion recibida
