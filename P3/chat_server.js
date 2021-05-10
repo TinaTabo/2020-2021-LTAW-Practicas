@@ -4,7 +4,25 @@ const http = require('http');
 const express = require('express');
 const colors = require('colors');
 
-const PUERTO = 8080;
+//-- Puerto donde se utilizará el chat.
+const PUERTO = 9000;
+
+//-- Notificaciones del chat
+const command_list = "Estos son los comandos soportados por BangChat:<br>"
+                   + "/help: Muestra esta lista de comandos soportados<br>"
+                   + "/list: Devuelve el número de usuarios conectados<br>"
+                   + "/hello: El servidor devuelve un saludo<br>"
+                   + "/date: El servidor nos devuelve la fecha actual";
+
+const msg_hello = "Hello Army!";
+const msg_welcome = "Bienvenid@ a BangChat!";
+const msg_bye = "Bye Bye!";
+
+//-- Contador de usuarios conectados
+let users_count = 0;
+
+//-- Obtener la fecha actual
+const date = new Date(Date.now());
 
 //-- Crear una nueva aplciacion web
 const app = express();
