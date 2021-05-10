@@ -27,7 +27,7 @@ msg_entry.oninput = () => {
 msg_entry.onchange = () => {
   if (msg_entry.value)
     socket.send(msg_entry.value);
-    escribiendo = False;
+    escribiendo = false;
   
   //-- Borrar el mensaje actual
   msg_entry.value = "";

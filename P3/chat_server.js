@@ -106,10 +106,6 @@ io.on('connect', (socket) => {
           socket.send(msg);
           break;
       }
-    } else if(msg = msg_writing) {
-      //-- Notificar al resto de usuarios que uno de ellos
-      //-- está escribiendo.
-      socket.broadcast.emit('message', msg);
     } else {
       //-- Reenviarlo a todos los clientes conectados
       io.send(msg);
