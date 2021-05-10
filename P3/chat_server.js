@@ -78,12 +78,27 @@ io.on('connect', (socket) => {
     //-- Aqui comienza el tratamiento de los comandos especiales.
     if (msg.startsWith('/')) {
       console.log("Comando Especial".red.bold);
+      switch(msg){
+        case '/help':
+          console.log("Mostrar lista de comandos especiales".red.bold);
+          break;
+        case '/list':
+          console.log("Mostrar número de usuarios conectados".red.bold);
+          break;
+        case '/hello':
+          console.log("Obtener saludo del servidor".red.bold);
+          break;
+        case '/date':
+          console.log("Obtener fecha actual".red.bold);
+          break;
+        default:
+          console.log("comando no reconocido".red.bold);
+          break;
+      }
     };
-
     //-- Reenviarlo a todos los clientes conectados
     io.send(msg);
   });
-
 });
 
 //-- Lanzar el servidor HTTP
