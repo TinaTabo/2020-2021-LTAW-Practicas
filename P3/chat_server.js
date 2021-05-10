@@ -75,6 +75,8 @@ io.on('connect', (socket) => {
   socket.on("message", (msg)=> {
     console.log("Mensaje Recibido!: " + msg.blue);
 
+    //-- Aqui comienza el tratamiento de los comandos especiales.
+
     //-- Reenviarlo a todos los clientes conectados
     io.send(msg);
   });
