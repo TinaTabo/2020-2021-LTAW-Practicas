@@ -76,6 +76,9 @@ io.on('connect', (socket) => {
     console.log("Mensaje Recibido!: " + msg.blue);
 
     //-- Aqui comienza el tratamiento de los comandos especiales.
+    if (msg.startsWith('/')) {
+      console.log("Comando Especial".red.bold);
+    };
 
     //-- Reenviarlo a todos los clientes conectados
     io.send(msg);
