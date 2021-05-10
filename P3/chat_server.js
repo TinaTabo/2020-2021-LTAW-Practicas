@@ -18,6 +18,7 @@ const msg_hello = "Hello Army!";
 const msg_welcome = "Bienvenid@ a BangChat!";
 const msg_bye = "Bye Bye!";
 const msg_newuser = "Un/a nuev@ Army se ha unido al Chat";
+const msg_writing = "Un/a Army está escribiendo...";
 
 //-- Contador de usuarios conectados
 let users_count = 0;
@@ -105,6 +106,10 @@ io.on('connect', (socket) => {
           socket.send(msg);
           break;
       }
+    } else if(msg = msg_writing) {
+      //-- Notificar al resto de usuarios que uno de ellos
+      //-- está escribiendo.
+      socket.broadcast.emit('message', msg);
     } else {
       //-- Reenviarlo a todos los clientes conectados
       io.send(msg);

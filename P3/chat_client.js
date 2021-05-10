@@ -2,6 +2,10 @@
 const display = document.getElementById("display");
 const msg_entry = document.getElementById("msg_entry");
 
+//-- MEJORA: Notificar al resto de usuario si uno de ellos
+//--         está escribiendo.
+const msg_writing = "Un/a Army está escribiendo...";
+let escribiendo = false;
 
 //-- Crear un websocket. Se establece la conexión con el servidor
 const socket = io();
@@ -11,10 +15,19 @@ socket.on("message", (msg)=>{
   display.innerHTML += '<p style="color:blue">' + msg + '</p>';
 });
 
+//-- MEJORA
+msg_entry.oninput = () => {
+  if (!escribiendo){
+    socket.send(msg_writing);
+    escribiendo = true;
+  }
+}
+
 //-- Al apretar el botón se envía un mensaje al servidor
 msg_entry.onchange = () => {
   if (msg_entry.value)
     socket.send(msg_entry.value);
+    escribiendo = False;
   
   //-- Borrar el mensaje actual
   msg_entry.value = "";
