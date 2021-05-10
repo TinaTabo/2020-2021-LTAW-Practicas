@@ -3,7 +3,6 @@ const socket = require('socket.io');
 const http = require('http');
 const express = require('express');
 const colors = require('colors');
-const { userInfo } = require('node:os');
 
 //-- Puerto donde se utilizará el chat.
 const PUERTO = 9000;
