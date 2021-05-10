@@ -81,6 +81,8 @@ io.on('connect', (socket) => {
       switch(msg){
         case '/help':
           console.log("Mostrar lista de comandos especiales".red.bold);
+          msg = command_list;
+          socket.send(msg);
           break;
         case '/list':
           console.log("Mostrar número de usuarios conectados".red.bold);
@@ -95,9 +97,10 @@ io.on('connect', (socket) => {
           console.log("comando no reconocido".red.bold);
           break;
       }
-    };
-    //-- Reenviarlo a todos los clientes conectados
-    io.send(msg);
+    } else {
+      //-- Reenviarlo a todos los clientes conectados
+      io.send(msg);
+    }; 
   });
 });
 
