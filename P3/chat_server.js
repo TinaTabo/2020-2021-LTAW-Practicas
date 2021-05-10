@@ -91,12 +91,18 @@ io.on('connect', (socket) => {
           break;
         case '/hello':
           console.log("Obtener saludo del servidor".red.bold);
+          msg = msg_hello;
+          socket.send(msg);
           break;
         case '/date':
           console.log("Obtener fecha actual".red.bold);
+          msg = date;
+          socket.send(msg);
           break;
         default:
           console.log("comando no reconocido".red.bold);
+          msg = "Comando NO reconocido.";
+          socket.send(msg);
           break;
       }
     } else {
