@@ -43,5 +43,5 @@ electron.app.on('ready', () => {
         console.log("HOLA?");
         win.webContents.send('print', "MENSAJE ENVIADO DESDE PROCESO MAIN");
     });
-    
+
 });
