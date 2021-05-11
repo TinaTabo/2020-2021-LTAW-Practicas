@@ -55,3 +55,4 @@ electron.app.on('ready', () => {
 electron.ipcMain.handle('test', (event, msg) => {
   console.log("-> Mensaje: " + msg);
 });
+
