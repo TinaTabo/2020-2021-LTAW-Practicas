@@ -1,3 +1,5 @@
+const electron = require('electron');
+
 console.log("Hola desde el proceso de la web...");
 
 //-- Obtener elementos de la interfaz
@@ -15,9 +17,13 @@ info1.textContent = process.arch;
 info2.textContent = process.platform;
 info3.textContent = process.cwd();
 
+
 btn_test.onclick = () => {
     display.innerHTML += "TEST! ";
     console.log("Botón apretado!");
+
+    //-- Enviar mensaje al proceso principal
+    electron.ipcRenderer.invoke('test', "MENSAJE DE PRUEBA: Boton apretado");
 }
 
 //-- Mensaje recibido del proceso MAIN
