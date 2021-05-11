@@ -9,6 +9,10 @@ h1 {
 .blue {
     color: blue;
 }
+
+.red {
+    color: red;
+}
   
 #display {
     border: 2px solid lightblue;
