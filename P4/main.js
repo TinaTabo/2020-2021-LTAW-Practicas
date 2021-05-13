@@ -17,16 +17,16 @@ const PUERTO = 9000;
 let win = null;
 
 //-- Notificaciones del chat
-const command_list = "Estos son los comandos soportados por BangChat:<br>"
+const command_list = "...Estos son los comandos soportados por BangChat:...<br>"
                    + "/help: Muestra esta lista de comandos soportados<br>"
                    + "/list: Devuelve el número de usuarios conectados<br>"
                    + "/hello: El servidor devuelve un saludo<br>"
                    + "/date: El servidor nos devuelve la fecha actual";
 
-const msg_hello = "Hello Army!";
-const msg_welcome = "Bienvenid@ a BangChat!";
-const msg_bye = "Bye Bye!";
-const msg_newuser = "Un/a nuev@ Army se ha unido al Chat";
+const msg_hello = "...Hello Army!...";
+const msg_welcome = "...Bienvenid@ a BangChat!...";
+const msg_bye = "...Un/a Army ha salido del Chat...";
+const msg_newuser = "...Un/a nuev@ Army se ha unido al Chat...";
 
 //-- Contador de usuarios conectados
 let users_count = 0;
@@ -46,7 +46,9 @@ const io = socket(server);
 //-------- PUNTOS DE ENTRADA DE LA APLICACION WEB
 //-- Definir el punto de entrada principal de mi aplicación web
 app.get('/', (req, res) => {
-  res.send('Bienvenido a BangChat!!!' + '<p><a href="/chat_main.html">Ir a BangChat</a></p>');
+  path = __dirname + '/index.html';
+  res.sendFile(path);
+  console.log("...Solicitud para entrar a BangChat...");
 });
 
 //-- Esto es necesario para que el servidor le envíe al cliente la
@@ -69,7 +71,7 @@ io.on('connect', (socket) => {
 
   //-- Notificar al resto de usuarios que un nuevo
   //-- usuario a accedido al chat.
-  socket.broadcast.emit('message', msg_newuser);
+  io.send(msg_newuser);
 
   //-- Enviar al renderizador el mensaje de nuevo usuario
   win.webContents.send('message', msg_newuser);
@@ -77,8 +79,8 @@ io.on('connect', (socket) => {
   //-- Evento de desconexión
   socket.on('disconnect', function(){
     console.log('** CONEXIÓN TERMINADA **'.yellow);
-    //-- Enviar mensaje de despedida al usuario.
-    socket.broadcast.emit('message', msg_bye);
+    //-- Notificar a los usuarios que uno ha abandonado el chat.
+    io.send(msg_bye);
     //-- Enviar al renderizador despedida al usuario
     win.webContents.send('message', msg_bye);
 
@@ -116,7 +118,8 @@ io.on('connect', (socket) => {
           break;
         case '/date':
           console.log("Obtener fecha actual".red.bold);
-          msg = date;
+          fecha = date.toUTCString();
+          msg = "Fecha actual: " + fecha + "<br>";
           socket.send(msg);
           break;
         default:
@@ -191,6 +194,7 @@ electron.app.on('ready', () => {
   //-- y luego enviar el mensaje al proceso de renderizado para que 
   //-- lo saque por la interfaz gráfica
   win.on('ready-to-show', () => {
+    console.log("Enviando la info...");
     win.webContents.send('info', info);
   });
 
