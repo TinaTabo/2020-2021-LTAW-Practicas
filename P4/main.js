@@ -3,6 +3,8 @@ const socket = require('socket.io');
 const http = require('http');
 const express = require('express');
 const colors = require('colors');
+const ip = require('ip');
+const electron = require('electron');
 
 //-- Puerto donde se utilizará el chat.
 const PUERTO = 9000;
@@ -18,12 +20,11 @@ const msg_hello = "Hello Army!";
 const msg_welcome = "Bienvenid@ a BangChat!";
 const msg_bye = "Bye Bye!";
 const msg_newuser = "Un/a nuev@ Army se ha unido al Chat";
-
-//-- Contador de usuarios conectados
-let users_count = 0;
-
+const msg_writing = "Army está escribiendo...";
 //-- Obtener la fecha actual
 const date = new Date(Date.now());
+//-- Contador de usuarios conectados
+let users_count = 0;
 
 //-- Crear una nueva aplciacion web
 const app = express();
@@ -34,15 +35,22 @@ const server = http.Server(app);
 //-- Crear el servidor de websockets, asociado al servidor http
 const io = socket(server);
 
+//-- Variable para acceder a la ventana principal
+//-- Se pone aquí para que sea global al módulo principal
+let win = null;
+
 //-------- PUNTOS DE ENTRADA DE LA APLICACION WEB
 //-- Definir el punto de entrada principal de mi aplicación web
 app.get('/', (req, res) => {
-  res.send('Bienvenido a BangChat!!!' + '<p><a href="/chat_main.html">Ir a BangChat</a></p>');
+  res.send('Bienvenido a BangChat!!!' + '<p><a href="/index.html">Ir a BangChat</a></p>');
 });
 
 //-- Esto es necesario para que el servidor le envíe al cliente la
 //-- biblioteca socket.io para el cliente
 app.use('/', express.static(__dirname +'/'));
+
+//-- Directorio público que contiene ficheros estáticos.
+app.use(express.static('public'));
 
 
 //------------------- GESTION SOCKETS IO
