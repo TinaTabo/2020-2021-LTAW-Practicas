@@ -1,5 +1,5 @@
 {
-    "name": "mi-electron-BangChat",
+    "name": "mi-electron-bangchat",
     "description": "Aplicación de Chat utilizando electron",
     "version": "0.1.0",
     "main": "main.js",
