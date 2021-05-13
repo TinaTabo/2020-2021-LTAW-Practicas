@@ -4,7 +4,7 @@ const msg_entry = document.getElementById("msg_entry");
 
 //-- MEJORA: Notificar al resto de usuario si uno de ellos
 //--         está escribiendo.
-const msg_writing = "Un usuario está escribiendo...";
+const msg_writing = "Army está escribiendo...";
 let escribiendo = false;
 
 //-- Crear un websocket. Se establece la conexión con el servidor
