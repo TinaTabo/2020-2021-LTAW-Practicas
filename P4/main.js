@@ -144,13 +144,7 @@ electron.app.on('ready', () => {
     //-- Crear la ventana principal de nuestra aplicación
     win = new electron.BrowserWindow({
         width: 900,   //-- Anchura 
-        height: 900,  //-- Altura
-
-        //-- Permitir que la ventana tenga ACCESO AL SISTEMA
-        webPreferences: {
-          nodeIntegration: true,
-          contextIsolation: false
-        }
+        height: 900  //-- Altura
     });
 
   //-- En la parte superior se nos ha creado el menu
@@ -162,11 +156,35 @@ electron.app.on('ready', () => {
   let interfaz = "index.html"
   win.loadFile(interfaz);
 
+  //-- Obtener la información del sistema sin tener que 
+  //-- dar permisos.
+  //-- versión de node
+  node_v = process.versions.node;
+  //-- versión de electron
+  electron_v = process.versions.electron;
+  //-- versión de chrome
+  chrome_v = process.versions.chrome;
+  //-- URL a ka qye se deben conectar los clientes
+  //-- para chatear.
+  dir_ip =  ip.address();
+  //-- arquitectura
+  arquitectura = process.arch;
+  //-- plataforma
+  plataforma = process.platform;
+  //-- directorio
+  directorio = process.cwd();
+  //-- numero de usuarios conectados
+  //-- users_count (ya definido)
+  //-- puerto (ya definido) -> PUERTO
+  //-- Agrupar información
+  let info = [node_v, electron_v, chrome_v, dir_ip, arquitectura,
+              plataforma, directorio, PUERTO, fich];
+
   //-- Esperar a que la página se cargue y se muestre
   //-- y luego enviar el mensaje al proceso de renderizado para que 
   //-- lo saque por la interfaz gráfica
   win.on('ready-to-show', () => {
-    win.webContents.send('print', "MENSAJE ENVIADO DESDE PROCESO MAIN");
+    win.webContents.send('info', info);
   });
 
 });
