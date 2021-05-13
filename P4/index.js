@@ -15,15 +15,6 @@ const directorio = document.getElementById("info6");
 const n_users = document.getElementById("users");
 const dir_ip = document.getElementById("dir_ip");
 
-//-- Funcionamiento del boton de test.
-//-- Envia mensajes al proceso MAIN.
-btn_test.onclick = () => {
-    display.innerHTML += "ARMY BOMB! <br>";
-    console.log("Botón apretado!");
-    //-- Enviar mensaje al proceso principal
-    electron.ipcRenderer.invoke('test', "Mensaje de test enviado");
-}
-
 //-- Mensaje recibido del proceso MAIN con información.
 electron.ipcRenderer.on('info', (event, message) => {
     console.log("Recibido: " + message);
@@ -54,3 +45,12 @@ electron.ipcRenderer.on('msg', (event, message) => {
     console.log("Recibido: " + message);
     display.innerHTML += message + "<br>";
 });
+
+//-- Funcionamiento del boton de test.
+//-- Envia mensajes al proceso MAIN.
+btn_test.onclick = () => {
+    display.innerHTML += "ARMY BOMB! <br>";
+    console.log("Botón apretado!");
+    //-- Enviar mensaje al proceso principal
+    electron.ipcRenderer.invoke('test', "Mensaje de test enviado");
+}
