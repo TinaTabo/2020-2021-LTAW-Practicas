@@ -172,7 +172,7 @@ electron.app.on('ready', () => {
 
   //-- Agrupar información
   let info = [node_v, electron_v, chrome_v, dir_ip, arquitectura,
-              plataforma, directorio, users_count, PUERTO, fich];
+              plataforma, directorio, PUERTO, fich];
 
 
   //-- Esperar a que la página se cargue y se muestre

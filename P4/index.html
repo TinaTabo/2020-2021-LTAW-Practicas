@@ -4,18 +4,45 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./chat.css">
+  <!-- Only scripts and files from the local machine are allowed -->
+  <!-- It removes the security Warning: Insecure Content-Security-Policy -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self';"/>
+  <!-- Hoja de estilo de la interfaz -->
+  <link rel="stylesheet" href="./style.css">
   <title>BangChat</title>
 
   <!-- Cargar la biblioteca Socket.IO. Nos la debe entregar el servidor -->
   <script src="/socket.io/socket.io.js"></script>
 
-  <!-- Cliente que usa los Sockets.io-->
-  <script src="chat_client.js" defer></script>
+  <!-- Cargar el proceso asociado a esta página -->
+  <script src="index.js" defer></script>
+
+  <title>BangChat</title>
 </head>
 
 <body>
   <h2>BangChat</h2>
+
+  <hr>
+    <h2>Información:</h2>
+    <ul>
+        <li>Versión de Node: <span id="info1" class="blue"></span> </li>
+        <li>Versión de Electron: <span id="info2" class="blue"></span> </li>
+        <li>Versión de Chrome: <span id="info3" class="blue"></span> </li>
+        <li>Arquitectura: <span id="info4" class="blue"></span> </li>
+        <li>Plataforma: <span id="info5" class="blue"></span></li>
+        <li>Diretorio: <span id="info6" class="blue"></span></li>
+    </ul>
+    <h2>Número de usuarios conectados:</h2>
+    <p><span id="users" class="blue"></span> </p>
+    <h2>Direcciónn IP:</h2>
+    <p><span id="dir_ip" class="blue"></span> </p>
+
+    <hr>
+    <p>Mensajes enviados desde el proceso main:</p>
+    <p>Print:  <span id='print' class="red"></span> </p>
+    <p>   <input type="button" value="Test" id="btn_test"> </p>
+
   <input type="text" placeholder="Escribe aquí los mensajes..." autocomplete="off" id="msg_entry">
   <p id="display"></p>
 </body>
