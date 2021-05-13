@@ -11,10 +11,11 @@ const chrome_v = document.getElementById("info3");
 const arquitectura = document.getElementById("info4");
 const plataforma = document.getElementById("info5");
 const directorio = document.getElementById("info6");
+const usuarios = document.getElementById("users");
 const dir_ip = document.getElementById("dir_ip");
 const print = document.getElementById("print");
 
-
+//-- Funcionamiento del boton de test.
 btn_test.onclick = () => {
     display.innerHTML += "TEST! ";
     console.log("Botón apretado!");
@@ -23,8 +24,8 @@ btn_test.onclick = () => {
     electron.ipcRenderer.invoke('test', "MENSAJE DE PRUEBA: Boton apretado");
 }
 
-//-- Mensaje recibido del proceso MAIN
-electron.ipcRenderer.on('print', (event, message) => {
+//-- Mensaje recibido del proceso MAIN con información.
+electron.ipcRenderer.on('info', (event, message) => {
     console.log("Recibido: " + message);
 
     //-- Obtenemos la información que envia el servidor.

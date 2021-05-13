@@ -5,13 +5,16 @@ const express = require('express');
 const colors = require('colors');
 const electron = require('electron');
 const process = require('process');
-const ip = require('ip'); 
-const { chrome } = require('process');
+const ip = require('ip');
 
 //-- Servidor de BangChat
 
 //-- Puerto donde se utilizará el chat.
 const PUERTO = 9000;
+
+//-- Variable para acceder a la ventana principal
+//-- Se pone aquí para que sea global al módulo principal
+let win = null;
 
 //-- Notificaciones del chat
 const command_list = "Estos son los comandos soportados por BangChat:<br>"
@@ -58,6 +61,8 @@ io.on('connect', (socket) => {
   console.log('** NUEVA CONEXIÓN **'.yellow);
   //-- Contabilizar al nuevo usuario
   users_count += 1;
+  //-- Enviar numero de usuarios al renderizador.
+  win.webContents.send('users', users_count);
   
   //-- Enviar mensaje de bienvenida al usuario.
   socket.send(msg_welcome);
@@ -66,13 +71,21 @@ io.on('connect', (socket) => {
   //-- usuario a accedido al chat.
   socket.broadcast.emit('message', msg_newuser);
 
+  //-- Enviar al renderizador el mensaje de nuevo usuario
+  win.webContents.send('message', msg_newuser);
+
   //-- Evento de desconexión
   socket.on('disconnect', function(){
     console.log('** CONEXIÓN TERMINADA **'.yellow);
     //-- Enviar mensaje de despedida al usuario.
     socket.broadcast.emit('message', msg_bye);
+    //-- Enviar al renderizador despedida al usuario
+    win.webContents.send('message', msg_bye);
+
     //-- Actualizar el numero de usuarios conectados
     users_count -= 1;
+    //-- Enviar al renderizador contador actualizado
+    win.webContents.send('users', users_count);
   });  
 
   //-- Mensaje recibido: Reenviarlo a todos los clientes conectados
@@ -124,10 +137,6 @@ console.log("Escuchando en puerto: " + PUERTO);
 //-- Crear aplicación Electron
 
 console.log("Arrancando electron...");
-
-//-- Variable para acceder a la ventana principal
-//-- Se pone aquí para que sea global al módulo principal
-let win = null;
 
 //-- Punto de entrada. En cuanto electron está listo,
 //-- ejecuta esta función
