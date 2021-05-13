@@ -3,6 +3,11 @@ const socket = require('socket.io');
 const http = require('http');
 const express = require('express');
 const colors = require('colors');
+const electron = require('electron');
+const process = require('process');
+const ip = require('ip'); 
+
+//-- Servidor de BangChat
 
 //-- Puerto donde se utilizará el chat.
 const PUERTO = 9000;
@@ -114,3 +119,56 @@ io.on('connect', (socket) => {
 //-- ¡Que empiecen los juegos de los WebSockets!
 server.listen(PUERTO);
 console.log("Escuchando en puerto: " + PUERTO);
+
+//-- Crear aplicación Electron
+
+console.log("Arrancando electron...");
+
+//-- Variable para acceder a la ventana principal
+//-- Se pone aquí para que sea global al módulo principal
+let win = null;
+
+//-- Punto de entrada. En cuanto electron está listo,
+//-- ejecuta esta función
+electron.app.on('ready', () => {
+    console.log("Evento Ready!");
+
+    //-- Crear la ventana principal de nuestra aplicación
+    win = new electron.BrowserWindow({
+        width: 1000,   //-- Anchura 
+        height: 1000,  //-- Altura
+
+        //-- Permitir que la ventana tenga ACCESO AL SISTEMA
+        webPreferences: {
+          nodeIntegration: true,
+          contextIsolation: false
+        }
+    });
+
+  //-- Cargar interfaz gráfica en HTML
+  win.loadFile("index.html");
+
+  //-- Obtención de informacion
+
+
+
+
+
+
+  //-- Esperar a que la página se cargue y se muestre
+  //-- y luego enviar el mensaje al proceso de renderizado para que 
+  //-- lo saque por la interfaz gráfica
+  win.on('ready-to-show', () => {
+    win.webContents.send('print', "MENSAJE ENVIADO DESDE PROCESO MAIN");
+  });
+
+});
+
+
+//-- Esperar a recibir los mensajes de botón apretado (Test) del proceso de 
+//-- renderizado. Al recibirlos se escribe una cadena en la consola
+electron.ipcMain.handle('test', (event, msg) => {
+  console.log("-> Mensaje: " + msg);
+  //-- Reenviar el msg a todos los clientes registrados
+  io.send(msg);
+});
