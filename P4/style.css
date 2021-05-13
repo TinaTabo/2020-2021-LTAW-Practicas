@@ -16,7 +16,7 @@ body{
     src: url(./archivos_para_css/fuente2.ttf);
 }
 
-h2{
+h1, h2{
     font-family: fuente2;
     color: rgb(218, 187, 228);
     font-size: 50px;

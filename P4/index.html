@@ -4,14 +4,13 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <!-- Only scripts and files from the local machine are allowed -->
   <!-- It removes the security Warning: Insecure Content-Security-Policy -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self';"/>
+
   <!-- Hoja de estilo de la interfaz -->
   <link rel="stylesheet" href="./style.css">
-
-  <!-- Cargar la biblioteca Socket.IO. Nos la debe entregar el servidor -->
-  <script src="/socket.io/socket.io.js"></script>
 
   <!-- Cargar el proceso asociado a esta página -->
   <script src="index.js" defer></script>
@@ -37,10 +36,8 @@
     <h2>Direccion IP</h2>
     <p id="dir_ip" class="blue"></p>
     <hr>
-    <h2>Pruebas</h2>
-    <p><input type="button" value="Message" id="btn_test"></p>
-
   <input type="text" placeholder="Escribe aquí los mensajes..." autocomplete="off" id="msg_entry">
   <p id="display"></p>
+  <p><input type="button" value="Enviar mensaje de prueba" id="btn_test"></p>
 </body>
 </html>

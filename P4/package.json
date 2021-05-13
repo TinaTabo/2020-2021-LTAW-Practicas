@@ -16,11 +16,10 @@
     },
     "build": {
         "appId": "mi-electron-bangchat-1-id",
-        "linux": {
+        "win": {
             "target": [
-                "AppImage"
-            ],
-            "category": "Utility"
+                "NSIS"
+            ]
         }
     },
     "devDependencies": {
