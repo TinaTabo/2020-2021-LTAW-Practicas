@@ -1,5 +1,5 @@
 body{
-    background-image: url(./archivos_para_css/fondo5.jpg);
+    background-image: url(./public/archivos_para_css/fondo5.jpg);
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat ;
@@ -8,12 +8,12 @@ body{
 
 @font-face {
     font-family: fuente1;
-    src: url(./archivos_para_css/fuente1.ttf);
+    src: url(./public/archivos_para_css/fuente1.ttf);
 }
 
 @font-face {
     font-family: fuente2;
-    src: url(./archivos_para_css/fuente2.ttf);
+    src: url(./public/archivos_para_css/fuente2.ttf);
 }
 
 h1, h2{

@@ -18,10 +18,10 @@ const dir_ip = document.getElementById("dir_ip");
 //-- Funcionamiento del boton de test.
 //-- Envia mensajes al proceso MAIN.
 btn_test.onclick = () => {
-    display.innerHTML += "TEST! ";
+    display.innerHTML += "ARMY BOMB! <br>";
     console.log("Botón apretado!");
     //-- Enviar mensaje al proceso principal
-    electron.ipcRenderer.invoke('test', "ARMY BOMB!");
+    electron.ipcRenderer.invoke('test', "Mensaje de test enviado");
 }
 
 //-- Mensaje recibido del proceso MAIN con información.

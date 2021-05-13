@@ -42,7 +42,7 @@ let win = null;
 //-------- PUNTOS DE ENTRADA DE LA APLICACION WEB
 //-- Definir el punto de entrada principal de mi aplicación web
 app.get('/', (req, res) => {
-  res.send('Bienvenido a BangChat!!!' + '<p><a href="/public/index.html">Ir a BangChat</a></p>');
+  res.send('Bienvenido a BangChat!!!' + '<p><a href="/public/chat_main.html">Ir a BangChat</a></p>');
 });
 
 //-- Esto es necesario para que el servidor le envíe al cliente la
@@ -144,7 +144,13 @@ electron.app.on('ready', () => {
     //-- Crear la ventana principal de nuestra aplicación
     win = new electron.BrowserWindow({
         width: 900,   //-- Anchura 
-        height: 900  //-- Altura
+        height: 900,  //-- Altura
+
+        //-- Permitir que la ventana tenga ACCESO AL SISTEMA
+        webPreferences: {
+          nodeIntegration: true,
+          contextIsolation: false
+        }
     });
 
   //-- En la parte superior se nos ha creado el menu
@@ -156,8 +162,7 @@ electron.app.on('ready', () => {
   let interfaz = "index.html"
   win.loadFile(interfaz);
 
-  //-- Obtener la información del sistema sin tener que 
-  //-- dar permisos.
+  //-- Obtener la información del sistema
   //-- versión de node
   node_v = process.versions.node;
   //-- versión de electron
@@ -178,7 +183,7 @@ electron.app.on('ready', () => {
   //-- puerto (ya definido) -> PUERTO
   //-- Agrupar información
   let info = [node_v, electron_v, chrome_v, dir_ip, arquitectura,
-              plataforma, directorio, PUERTO, fich];
+              plataforma, directorio, PUERTO, interfaz];
 
   //-- Esperar a que la página se cargue y se muestre
   //-- y luego enviar el mensaje al proceso de renderizado para que 
