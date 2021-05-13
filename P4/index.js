@@ -13,9 +13,9 @@ const plataforma = document.getElementById("info5");
 const directorio = document.getElementById("info6");
 const usuarios = document.getElementById("users");
 const dir_ip = document.getElementById("dir_ip");
-const print = document.getElementById("print");
 
 //-- Funcionamiento del boton de test.
+//-- Envia mensajes al proceso MAIN.
 btn_test.onclick = () => {
     display.innerHTML += "TEST! ";
     console.log("Botón apretado!");
@@ -43,4 +43,17 @@ electron.ipcRenderer.on('info', (event, message) => {
     url = "http://" + ip + ":" + port + "/" + fich;
     dir_ip.textContent = url;
     
-  });
+});
+
+//-- Mensaje recibido del proceso MAIN con el numero de usuarios.
+electron.ipcRenderer.on('users', (event, message) => {
+    console.log("Recibido: " + message);
+    usuarios.textContent = message;
+});
+
+//-- Mensaje recibido del proceso MAIN con los mensajes de los usuarios.
+electron.ipcRenderer.on('message', (event, message) => {
+    console.log("Recibido: " + message);
+    display.innerHTML += message + "<br>";
+});
+
