@@ -6,6 +6,7 @@ const colors = require('colors');
 const electron = require('electron');
 const process = require('process');
 const ip = require('ip'); 
+const { chrome } = require('process');
 
 //-- Servidor de BangChat
 
@@ -149,6 +150,17 @@ electron.app.on('ready', () => {
   win.loadFile("index.html");
 
   //-- Obtención de informacion
+  //-- versión de node
+  node_v = process.versions.node;
+  //-- versión de electron
+  electron_v = process.versions.electron;
+  //-- versión de chrome
+  chrome_v = process.versions.chrome;
+  //-- URL a ka qye se deben conectar los clientes
+  //-- para chatear.
+  dir_ip =  ip.address();
+  
+
 
 
 
