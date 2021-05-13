@@ -44,6 +44,8 @@ app.get('/', (req, res) => {
 //-- biblioteca socket.io para el cliente
 app.use('/', express.static(__dirname +'/'));
 
+//-- Directorio público que contiene ficheros estáticos.
+app.use(express.static('public'));
 
 //------------------- GESTION SOCKETS IO
 //-- Evento: Nueva conexion recibida
