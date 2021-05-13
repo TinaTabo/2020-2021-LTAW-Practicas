@@ -5,6 +5,7 @@ const express = require('express');
 const colors = require('colors');
 const ip = require('ip');
 const electron = require('electron');
+const process = require('process');
 
 //-- Puerto donde se utilizará el chat.
 const PUERTO = 9000;
@@ -20,7 +21,6 @@ const msg_hello = "Hello Army!";
 const msg_welcome = "Bienvenid@ a BangChat!";
 const msg_bye = "Bye Bye!";
 const msg_newuser = "Un/a nuev@ Army se ha unido al Chat";
-const msg_writing = "Army está escribiendo...";
 //-- Obtener la fecha actual
 const date = new Date(Date.now());
 //-- Contador de usuarios conectados
@@ -42,7 +42,7 @@ let win = null;
 //-------- PUNTOS DE ENTRADA DE LA APLICACION WEB
 //-- Definir el punto de entrada principal de mi aplicación web
 app.get('/', (req, res) => {
-  res.send('Bienvenido a BangChat!!!' + '<p><a href="/index.html">Ir a BangChat</a></p>');
+  res.send('Bienvenido a BangChat!!!' + '<p><a href="/public/index.html">Ir a BangChat</a></p>');
 });
 
 //-- Esto es necesario para que el servidor le envíe al cliente la
@@ -60,26 +60,38 @@ io.on('connect', (socket) => {
   console.log('** NUEVA CONEXIÓN **'.yellow);
   //-- Contabilizar al nuevo usuario
   users_count += 1;
+  //-- Enviar al render
+  win.webContents.send('users', users_count);
   
   //-- Enviar mensaje de bienvenida al usuario.
   socket.send(msg_welcome);
 
   //-- Notificar al resto de usuarios que un nuevo
   //-- usuario a accedido al chat.
-  socket.broadcast.emit('message', msg_newuser);
+  io.send(msg_newuser);
+  //-- Enviar al render
+  win.webContents.send('msg', msg_newuser);
 
   //-- Evento de desconexión
   socket.on('disconnect', function(){
     console.log('** CONEXIÓN TERMINADA **'.yellow);
     //-- Enviar mensaje de despedida al usuario.
-    socket.broadcast.emit('message', msg_bye);
+    io.send(msg_bye);
+    //-- Enviar al render
+    win.webContents.send('msg', msg_bye);
+
     //-- Actualizar el numero de usuarios conectados
     users_count -= 1;
+    //-- Enviar al render
+    win.webContents.send('users', users_count);
   });  
 
   //-- Mensaje recibido: Reenviarlo a todos los clientes conectados
   socket.on("message", (msg)=> {
     console.log("Mensaje Recibido!: " + msg.blue);
+
+    //-- Enviar mensaje al render
+    win.webContents.send('msg', msg);
 
     //-- Aqui comienza el tratamiento de los comandos especiales.
     if (msg.startsWith('/')) {
@@ -122,3 +134,48 @@ io.on('connect', (socket) => {
 //-- ¡Que empiecen los juegos de los WebSockets!
 server.listen(PUERTO);
 console.log("Escuchando en puerto: " + PUERTO);
+
+//--------------------ELECTRON APP--------------------
+//-- Punto de entrada. En cuanto electron está listo,
+//-- ejecuta esta función
+electron.app.on('ready', () => {
+    console.log("Evento Ready!");
+
+    //-- Crear la ventana principal de nuestra aplicación
+    win = new electron.BrowserWindow({
+        width: 900,   //-- Anchura 
+        height: 900,  //-- Altura
+
+        //-- Permitir que la ventana tenga ACCESO AL SISTEMA
+        webPreferences: {
+          nodeIntegration: true,
+          contextIsolation: false
+        }
+    });
+
+  //-- En la parte superior se nos ha creado el menu
+  //-- por defecto
+  //-- Si lo queremos quitar, hay que añadir esta línea
+  //win.setMenuBarVisibility(false)
+
+  //-- Cargar interfaz gráfica en HTML
+  let interfaz = "index.html"
+  win.loadFile(interfaz);
+
+  //-- Esperar a que la página se cargue y se muestre
+  //-- y luego enviar el mensaje al proceso de renderizado para que 
+  //-- lo saque por la interfaz gráfica
+  win.on('ready-to-show', () => {
+    win.webContents.send('print', "MENSAJE ENVIADO DESDE PROCESO MAIN");
+  });
+
+});
+
+
+//-- Esperar a recibir los mensajes de botón apretado (Test) del proceso de 
+//-- renderizado. Al recibirlos se escribe una cadena en la consola
+electron.ipcMain.handle('test', (event, msg) => {
+  console.log("-> Mensaje: " + msg);
+  //-- Reenviarlo a todos los usuarios
+  io.send(msg);
+});
