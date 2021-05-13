@@ -1,6 +1,6 @@
 const electron = require('electron');
 
-console.log("Hola desde el proceso de la web...");
+console.log("Hola desde el proceso de la web (index.js)...");
 
 //-- Obtener elementos de la interfaz
 const btn_test = document.getElementById("btn_test");
