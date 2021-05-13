@@ -17,10 +17,10 @@ const command_list = "Estos son los comandos soportados por BangChat:<br>"
                    + "/hello: El servidor devuelve un saludo<br>"
                    + "/date: El servidor nos devuelve la fecha actual";
 
-const msg_hello = "Hello Army!";
-const msg_welcome = "Bienvenid@ a BangChat!";
+const msg_hello = "Hello!";
+const msg_welcome = "Bienvenid@ a Chat!";
 const msg_bye = "Bye Bye!";
-const msg_newuser = "Un/a nuev@ Army se ha unido al Chat";
+const msg_newuser = "Un/a nuev@ usuario se ha unido al Chat";
 //-- Obtener la fecha actual
 const date = new Date(Date.now());
 //-- Contador de usuarios conectados

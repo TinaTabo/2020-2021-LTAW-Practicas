@@ -49,7 +49,7 @@ electron.ipcRenderer.on('msg', (event, message) => {
 //-- Funcionamiento del boton de test.
 //-- Envia mensajes al proceso MAIN.
 btn_test.onclick = () => {
-    display.innerHTML += "ARMY BOMB! <br>";
+    display.innerHTML += "Hola Hola! <br>";
     console.log("Botón apretado!");
     //-- Enviar mensaje al proceso principal
     electron.ipcRenderer.invoke('test', "Mensaje de test enviado");
