@@ -92,6 +92,9 @@ io.on('connect', (socket) => {
   socket.on("message", (msg)=> {
     console.log("Mensaje Recibido!: " + msg.blue);
 
+    //-- Enviar mensaje al renderizador
+    win.webContents.send('message', msg);
+
     //-- Aqui comienza el tratamiento de los comandos especiales.
     if (msg.startsWith('/')) {
       console.log("Comando Especial".red.bold);
