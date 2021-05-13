@@ -42,7 +42,9 @@ let win = null;
 //-------- PUNTOS DE ENTRADA DE LA APLICACION WEB
 //-- Definir el punto de entrada principal de mi aplicación web
 app.get('/', (req, res) => {
-  res.send('Bienvenido a BangChat!!!' + '<p><a href="/public/chat_main.html">Ir a BangChat</a></p>');
+  path = __dirname + '/public/chat_main.html';
+  res.sendFile(path);
+  console.log("solicitud de acceso al chat");
 });
 
 //-- Esto es necesario para que el servidor le envíe al cliente la
@@ -189,6 +191,7 @@ electron.app.on('ready', () => {
   //-- y luego enviar el mensaje al proceso de renderizado para que 
   //-- lo saque por la interfaz gráfica
   win.on('ready-to-show', () => {
+    console.log("Enviando info".red);
     win.webContents.send('info', info);
   });
 
