@@ -147,7 +147,8 @@ electron.app.on('ready', () => {
     });
 
   //-- Cargar interfaz gráfica en HTML
-  win.loadFile("index.html");
+  let fich = "index.html";
+  win.loadFile(fich);
 
   //-- Obtención de informacion
   //-- versión de node
@@ -159,19 +160,26 @@ electron.app.on('ready', () => {
   //-- URL a ka qye se deben conectar los clientes
   //-- para chatear.
   dir_ip =  ip.address();
-  
+  //-- arquitectura
+  arquitectura = process.arch;
+  //-- plataforma
+  plataforma = process.platform;
+  //-- directorio
+  directorio = process.cwd();
+  //-- numero de usuarios conectados
+  //-- users_count (ya definido)
+  //-- puerto (ya definido) -> PUERTO
 
-
-
-
-
+  //-- Agrupar información
+  let info = [node_v, electron_v, chrome_v, dir_ip, arquitectura,
+              plataforma, directorio, users_count, PUERTO, fich];
 
 
   //-- Esperar a que la página se cargue y se muestre
   //-- y luego enviar el mensaje al proceso de renderizado para que 
   //-- lo saque por la interfaz gráfica
   win.on('ready-to-show', () => {
-    win.webContents.send('print', "MENSAJE ENVIADO DESDE PROCESO MAIN");
+    win.webContents.send('print', info);
   });
 
 });
