@@ -64,9 +64,11 @@ h2{
     background-color: rgb(255, 255, 255);
 }
 
-#info {
+#info, #dir_ip {
     border-style: outset;
     border-width: 15px;
     border-radius: 20px;
     border-color: rgb(194, 158, 236);
+    padding-left: 25px;
+    padding-right: 25px;
 }
