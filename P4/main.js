@@ -5,7 +5,6 @@ const express = require('express');
 const colors = require('colors');
 const ip = require('ip');
 const electron = require('electron');
-const process = require('process');
 
 //-- Puerto donde se utilizará el chat.
 const PUERTO = 9000;
