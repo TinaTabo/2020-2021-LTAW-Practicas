@@ -16,6 +16,15 @@ body{
     src: url(./public/archivos_para_css/fuente2.ttf);
 }
 
+h1{
+    border-style: outset;
+    border-width: 15px;
+    border-radius: 20px;
+    border-color: rgb(194, 158, 236);
+    padding: 25px;
+    background-color: rgb(255, 255, 255, 0.548);
+}
+
 h1, h2{
     font-family: fuente2;
     color: rgb(218, 187, 228);
@@ -37,23 +46,33 @@ h1, h2{
     font-size: 25px;
 }
 
+#btn_test{
+    text-decoration: none;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 20px;
+    color: rgb(240, 207, 240);
+    background-color: #b07ebe;
+    border-radius: 6px;
+    border: 2px solid #89059b;
+  }
+  #btn_test:hover{
+    color: #89059b;
+    background-color: #ffffff;
+  }
+
 #display{
-    border-style: outset;
-    border-width: 15px;
-    border-radius: 20px;
-    border-color: rgb(194, 158, 236);
-    background-color: rgba(0, 0, 0, 0.548);
-    height: 500px;
-    margin-left: 20%;
-    margin-right: 20%;
+    height: 900px;
+    width: 700px;
     text-align: left;
     font-family: fuente1;
     font-size: 25px;
     color: rgb(218, 187, 228);
     overflow: scroll;
-    padding-left: 2%;
-    padding-left: 2%;
-    padding-bottom: 0%;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }
 
 .blue {
@@ -64,11 +83,48 @@ h1, h2{
     background-color: rgb(255, 255, 255);
 }
 
-#info, #dir_ip {
+#info{
     border-style: outset;
     border-width: 15px;
     border-radius: 20px;
     border-color: rgb(194, 158, 236);
-    padding-left: 25px;
-    padding-right: 25px;
+    padding: 25px;
+    text-align: left;
+}
+
+#dir_ip, #users {
+    border-style: outset;
+    border-width: 15px;
+    border-radius: 20px;
+    border-color: rgb(194, 158, 236);
+    padding: 5%;
+    text-align: center;
+}
+
+.izq{
+    text-align: center;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 2%;
+    width: 30%;
+    height: 40%;
+    position: relative;
+    float: left;
+    height: auto;
+}
+  
+.der{
+    border-style: outset;
+    border-width: 15px;
+    border-radius: 20px;
+    border-color: rgb(194, 158, 236);
+    background-color: rgba(0, 0, 0, 0.548);
+    float:right;
+    width: 50%;
+    height: 40%;
+    padding: 15px;
+    height: 1000px;
+    overflow: auto;
+    margin-bottom: 15px;
 }

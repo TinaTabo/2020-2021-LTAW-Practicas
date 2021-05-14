@@ -145,8 +145,8 @@ electron.app.on('ready', () => {
 
     //-- Crear la ventana principal de nuestra aplicación
     win = new electron.BrowserWindow({
-        width: 900,   //-- Anchura 
-        height: 900,  //-- Altura
+        width: 1100,   //-- Anchura 
+        height: 1100,  //-- Altura
 
         //-- Permitir que la ventana tenga ACCESO AL SISTEMA
         webPreferences: {
@@ -158,7 +158,7 @@ electron.app.on('ready', () => {
   //-- En la parte superior se nos ha creado el menu
   //-- por defecto
   //-- Si lo queremos quitar, hay que añadir esta línea
-  //win.setMenuBarVisibility(false)
+  win.setMenuBarVisibility(false)
 
   //-- Cargar interfaz gráfica en HTML
   let interfaz = "index.html"
