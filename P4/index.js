@@ -34,6 +34,8 @@ electron.ipcRenderer.on('info', (event, message) => {
     
 });
 
+//-- inicializar contador a 0
+n_users.innerHTML = 0;
 //-- Mensaje recibido del proceso MAIN con el numero de usuarios.
 electron.ipcRenderer.on('users', (event, message) => {
     console.log("Recibido: " + message);
