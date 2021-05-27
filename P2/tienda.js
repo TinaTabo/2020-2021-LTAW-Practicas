@@ -526,8 +526,7 @@ const server = http.createServer((req, res) => {
                 res.end();
               }
           });
-          
-          return;
+        
           break;
 
           //-- Si no es ninguna de las anteriores devolver mensaje de error
